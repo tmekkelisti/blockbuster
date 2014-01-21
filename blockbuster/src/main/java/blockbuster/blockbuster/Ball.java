@@ -6,30 +6,31 @@ public class Ball {
 
     int x = 0;
     int y = 0;
-    int directionX = 1;
-    int directionY = 1;
+    int dx = 1;
+    int dy = 1;
     App blockbuster;
 
     public Ball(App blockbuster) {
         this.blockbuster = blockbuster;
     }
-    
-    
 
     public void moveBall() {
-        if(x + directionX < 0){
-            directionX = 1;
-        } if(x + directionX > blockbuster.getWidth() - 15){
-            directionX = -1;
-        } if(y + directionY < 0){
-            directionY = 1;
-        } if(y + directionY > blockbuster.getHeight() - 15){
-            directionY = -1;
+        if (x + dx < 0) {
+            dx = 1;
         }
-        
-        x += directionX;
-        y += directionY;
-        
+        if (x + dx > blockbuster.getWidth() - 15) {
+            dx = -1;
+        }
+        if (y + dy < 0) {
+            dy = 1;
+        }
+        if (y + dy > blockbuster.getHeight() - 15) {
+            dy = -1;
+        }
+
+        x += dx;
+        y += dy;
+
     }
 
     public void paint(Graphics ball) {

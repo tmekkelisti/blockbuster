@@ -3,6 +3,8 @@ package blockbuster.blockbuster;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -11,10 +13,33 @@ public class App extends JPanel {
     Board board = new Board(this);
     Ball ball = new Ball(this);
 
+    public App() {
+        addKeyListener(new KeyListener() {
+
+            @Override
+            public void keyTyped(KeyEvent ke) {
+                
+            }
+
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                board.keyPressed(ke);
+            }
+
+            @Override
+            public void keyReleased(KeyEvent ke) {
+                board.keyReleased(ke);
+            }
+        });
+        setFocusable(true);
+    }
+  
+
     public static void main(String[] args) throws InterruptedException {
         JFrame lauta = new JFrame("BLOCKBUSTER");
         App blockbuster = new App();
         lauta.add(blockbuster);
+
         lauta.setSize(400, 600);
         lauta.setVisible(true);
         lauta.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -22,14 +47,14 @@ public class App extends JPanel {
         while (true) {
             blockbuster.animate();
             blockbuster.repaint();
-            Thread.sleep(7);
+            Thread.sleep(5);
         }
 
     }
 
     public void animate() {
         ball.moveBall();
-        
+        board.moveBoard();
     }
 
     @Override
