@@ -1,2 +1,3 @@
 160114 2h	  Projektin aloitus
 200114 2h   Alun koodaukset & testaukset
+220114 4h   JUnit testejä
