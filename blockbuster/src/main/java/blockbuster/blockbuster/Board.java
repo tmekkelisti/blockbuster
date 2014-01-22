@@ -7,6 +7,8 @@ public class Board {
 
     int x = 0;
     int dx = 0;
+    int boardSize = 70;
+    int boardSpeed = 2;
     App blockbuster;
 
     public Board(App blockbuster) {
@@ -14,11 +16,11 @@ public class Board {
     }
 
     public void paint(Graphics2D board) {
-        board.fillRect(x, 530, 70, 10);
+        board.fillRect(x, 530, boardSize, 10);
     }
 
     public void moveBoard() {
-        if (x + dx > 0 && x + dx < blockbuster.getWidth() - 70) {
+        if (x + dx > 0 && x + dx < blockbuster.getWidth() - boardSize) {
             x += dx;
         }
 
@@ -30,10 +32,29 @@ public class Board {
 
     void keyPressed(KeyEvent ke) {
         if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
-            dx = -2;
+            dx = -boardSpeed;
         }
         if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
-            dx = 2;
+            dx = boardSpeed;
         }
     }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getDx() {
+        return dx;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setDx(int dx) {
+        this.dx = dx;
+    }
+    
+    
+    
 }

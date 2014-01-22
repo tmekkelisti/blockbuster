@@ -47,7 +47,7 @@ public class App extends JPanel {
         while (true) {
             blockbuster.animate();
             blockbuster.repaint();
-            Thread.sleep(5);
+            Thread.sleep(10);
         }
 
     }
