@@ -39,6 +39,8 @@ public class BlockbusterTest {
         frame.setSize(400, 600);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        
     }
 
     public void setBall(int x, int y, int dx, int dy) {
@@ -102,11 +104,23 @@ public class BlockbusterTest {
     
     @Test
     public void boardInBoundsRight(){
-        board.setX(blockbuster.getWidth() - board.boardSize);
+        board.setX(blockbuster.getWidth() - board.boardWidth);
         board.setDx(board.boardSpeed);
         board.moveBoard();
         
-        assertEquals("Board: x:", blockbuster.getWidth() - board.boardSize, board.getX());
+        assertEquals("Board: x:", blockbuster.getWidth() - board.boardWidth, board.getX());
     }
+    
+//    //TÖRMÄYSTESTI
+//    
+//    @Test
+//    public void ballHitsBoard(){
+//        setBall(0, board.y, 0, 1);
+//        board.x = 0;
+//        ball.moveBall();
+//        
+//        assertEquals("Ball hits board: ", true, blockbuster.hitDetection());
+//        
+//    }
     
 }

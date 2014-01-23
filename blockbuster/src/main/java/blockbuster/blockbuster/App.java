@@ -2,6 +2,7 @@ package blockbuster.blockbuster;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -47,7 +48,8 @@ public class App extends JPanel {
         while (true) {
             blockbuster.animate();
             blockbuster.repaint();
-            Thread.sleep(10);
+            blockbuster.hitDetection();
+            Thread.sleep(15);
         }
 
     }
@@ -55,6 +57,7 @@ public class App extends JPanel {
     public void animate() {
         ball.moveBall();
         board.moveBoard();
+        
     }
 
     @Override
@@ -63,8 +66,21 @@ public class App extends JPanel {
         Graphics2D g2d = (Graphics2D) gfx;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                              RenderingHints.VALUE_ANTIALIAS_ON);
+        
+        g2d.drawString("HIT: " + hitDetection(), 5, 15);
+        
         ball.paint(g2d);
         board.paint(g2d);
     }
+    
+    public boolean hitDetection(){
+
+        if(ball.getBounds().intersects(board.getBounds())){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
 
 }

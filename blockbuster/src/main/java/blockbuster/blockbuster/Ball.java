@@ -1,6 +1,7 @@
 package blockbuster.blockbuster;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 public class Ball {
 
@@ -36,9 +37,15 @@ public class Ball {
         
     }
 
+    public Rectangle getBounds(){
+        return new Rectangle(x,y,ballSize,ballSize);
+    }
+    
     public void paint(Graphics ball) {
         ball.fillOval(x, y, ballSize, ballSize);
     }
+    
+    
 
     public int getX() {
         return x;

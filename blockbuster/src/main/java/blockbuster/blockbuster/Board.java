@@ -1,13 +1,16 @@
 package blockbuster.blockbuster;
 
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 
 public class Board {
 
     int x = 0;
+    int y = 530;
     int dx = 0;
-    int boardSize = 70;
+    int boardHeight = 10;
+    int boardWidth = 70;
     int boardSpeed = 2;
     App blockbuster;
 
@@ -16,11 +19,11 @@ public class Board {
     }
 
     public void paint(Graphics2D board) {
-        board.fillRect(x, 530, boardSize, 10);
+        board.fillRect(x, y, boardWidth, boardHeight);
     }
 
     public void moveBoard() {
-        if (x + dx > 0 && x + dx < blockbuster.getWidth() - boardSize) {
+        if (x + dx > 0 && x + dx < blockbuster.getWidth() - boardWidth) {
             x += dx;
         }
 
@@ -37,6 +40,10 @@ public class Board {
         if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
             dx = boardSpeed;
         }
+    }
+    
+    public Rectangle getBounds(){
+        return new Rectangle(x, y, boardWidth, boardHeight);
     }
 
     public int getX() {
