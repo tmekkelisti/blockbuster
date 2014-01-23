@@ -36,13 +36,13 @@ public class App extends JPanel {
   
 
     public static void main(String[] args) throws InterruptedException {
-        JFrame lauta = new JFrame("BLOCKBUSTER");
+        JFrame frame = new JFrame("BLOCKBUSTER");
         App blockbuster = new App();
-        lauta.add(blockbuster);
+        frame.add(blockbuster);
 
-        lauta.setSize(400, 600);
-        lauta.setVisible(true);
-        lauta.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(400, 600);
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         while (true) {
             blockbuster.animate();

@@ -34,11 +34,11 @@ public class BlockbusterTest {
         ball = new Ball(blockbuster);
         board = new Board(blockbuster);
 
-        JFrame lauta = new JFrame("BLOCKBUSTER");
-        lauta.add(blockbuster);
-        lauta.setSize(400, 600);
-        lauta.setVisible(true);
-        lauta.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JFrame frame = new JFrame("BLOCKBUSTER");
+        frame.add(blockbuster);
+        frame.setSize(400, 600);
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     public void setBall(int x, int y, int dx, int dy) {
@@ -61,7 +61,7 @@ public class BlockbusterTest {
     }
 
     @Test
-    public void BallInBoundsBottom() {
+    public void ballInBoundsBottom() {
         setBall(0,blockbuster.getHeight() - ball.ballSize, 0, 1);
         ball.moveBall();
         
@@ -71,7 +71,7 @@ public class BlockbusterTest {
     }
 
     @Test
-    public void BallInBoundsLeft() {
+    public void ballInBoundsLeft() {
         setBall(0, 0, -1, 0);
         ball.moveBall();
         
@@ -80,7 +80,7 @@ public class BlockbusterTest {
     }
     
     @Test
-    public void BallInBoundsRight(){
+    public void ballInBoundsRight(){
         setBall(blockbuster.getWidth() - ball.ballSize, 0, 1, 0);
         ball.moveBall();
         
@@ -92,7 +92,7 @@ public class BlockbusterTest {
     // yli rajojen
     
     @Test
-    public void BoardInBoundsLeft(){
+    public void boardInBoundsLeft(){
         board.setX(0);
         board.setDx(-board.boardSpeed);
         board.moveBoard();
@@ -101,7 +101,7 @@ public class BlockbusterTest {
     }
     
     @Test
-    public void BoardInBoundsRight(){
+    public void boardInBoundsRight(){
         board.setX(blockbuster.getWidth() - board.boardSize);
         board.setDx(board.boardSpeed);
         board.moveBoard();
