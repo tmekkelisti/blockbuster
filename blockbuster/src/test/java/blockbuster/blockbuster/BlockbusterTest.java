@@ -19,13 +19,13 @@ import static org.junit.Assert.*;
  *
  * @author Teemu
  */
-public class blockbusterTest {
+public class BlockbusterTest {
 
     public App blockbuster;
     public Ball ball;
     public Board board;
 
-    public blockbusterTest() {
+    public BlockbusterTest() {
     }
 
     @Before
@@ -51,7 +51,7 @@ public class blockbusterTest {
     // PALLON TESTAUS
     // pallo ei liiku yli rajojen
     @Test
-    public void BallInBoundsTop() {
+    public void ballInBoundsTop() {
         setBall(0, 0, 0, -1);
         ball.moveBall();
 
