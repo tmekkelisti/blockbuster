@@ -5,11 +5,11 @@ import java.awt.Rectangle;
 
 public class Ball {
 
-    private int x = 200;
+    private int x = 30;
     private int y = 5;
-    private int dx = 0;
-    private int dy = -1;
-    int ballSize = 30;
+    private int dx = 1;
+    private int dy = 1;
+    int ballSize = 10;
     App blockbuster;
 
     public Ball(App blockbuster) {
@@ -33,7 +33,7 @@ public class Ball {
         x += dx;
         y += dy;
 
-        //System.out.println(x + ", " + y + "|" + dy);
+
         
     }
 
