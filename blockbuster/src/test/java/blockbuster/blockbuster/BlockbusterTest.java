@@ -118,9 +118,11 @@ public class BlockbusterTest {
 //        setBall(0, board.y, 0, 1);
 //        board.x = 0;
 //        ball.moveBall();
+//        blockbuster.hitDetection();
 //        
-//        assertEquals("Ball hits board: ", true, blockbuster.hitDetection());
+//        assertEquals("Ball hits board: y:", board.y - 1, ball.getY());
+//        assertEquals("Ball hits board: dy:", -1, ball.getDy());
 //        
 //    }
-    
+//    
 }
