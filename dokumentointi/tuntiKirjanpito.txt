@@ -1,4 +1,6 @@
-160114 2h	  Projektin aloitus
+﻿160114 2h	  Projektin aloitus
 200114 2h   Alun koodaukset & testaukset
 220114 4h   JUnit testejä
 230114 4h   viilauksia, testejä, hit detection
+290114 3h   Laudan kimpoilu, kokeiluja
+300114 5h   Refaktorointia, blokkien kimmotus
