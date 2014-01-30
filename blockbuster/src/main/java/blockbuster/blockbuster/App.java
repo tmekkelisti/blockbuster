@@ -15,17 +15,16 @@ import javax.swing.SwingUtilities;
 
 public class App extends JPanel {
 
-    Board board = new Board(this);
-    Ball ball = new Ball(this);
+    Board board;    // = new Board(this);
+    Ball ball;      // = new Ball(this);
     Timer timer;
     Block[] blocks;
+    GameLoop loop;
+    
 
-    public App() {
-        
-        createBlocks();
-//        timer = new Timer();
-//        timer.scheduleAtFixedRate(new ScheduleTask(), 1000, 5);
-        
+    public App() throws InterruptedException {
+ 
+
         addKeyListener(new KeyListener() {
 
             @Override
@@ -44,6 +43,7 @@ public class App extends JPanel {
             }
         });
         setFocusable(true);
+        init();
     }
   
 
@@ -58,20 +58,21 @@ public class App extends JPanel {
         frame.setSize(400, 600);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        GameLoop gl = new GameLoop(blockbuster);
+        blockbuster.loop = new GameLoop(blockbuster);
+//        
+//        frame.addKeyListener(new KeyControl());
+
     }
 
-    class ScheduleTask extends TimerTask {
 
-        public ScheduleTask() {
-        }
-
-        @Override
-        public void run() {
-            animate();
-            repaint();
-            hitDetection();
-        }
+    public void init() throws InterruptedException{
+//        loop = new GameLoop(this);
+        createBlocks();
+        ball = new Ball(this);
+        board = new Board(this);
+//        keyControl = new KeyControl();
+//        addKeyListener(keyControl);
+//        setFocusable(true);
     }
     
     public void animate() {

@@ -13,33 +13,27 @@ import javax.swing.JFrame;
  *
  * @author Teemu
  */
-public class UI implements Runnable{
+public class UI{
 
     App blockbuster;
     JFrame ui = new JFrame("BLOCKBUSTERRR");
-    boolean isRunning;
+    GameLoop loop;
     
-    
-    public UI(App blockbuster) {
-        this.blockbuster = blockbuster;
-        this.isRunning = true;
+    public UI() throws InterruptedException {
+
         this.ui.setSize(400, 600);
         this.ui.setVisible(true);
         this.ui.setResizable(false);
         this.ui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        loop = new GameLoop(new App());
     }
 
     
     
-    @Override
-    public void run() {
-        while(isRunning){
-            blockbuster.animate();
-            blockbuster.repaint();
-            blockbuster.hitDetection();            
-        }
+    
 
-    }
+
     
     
     

@@ -3,6 +3,7 @@ package blockbuster.blockbuster;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 public class Board {
 
@@ -13,9 +14,11 @@ public class Board {
     int boardWidth = 70;
     int boardSpeed = 2;
     App blockbuster;
+    
 
     public Board(App blockbuster) {
         this.blockbuster = blockbuster;
+
     }
 
     public void paint(Graphics2D board) {
@@ -31,6 +34,7 @@ public class Board {
 
     void keyReleased(KeyEvent ke) {
         dx = 0;
+        
     }
 
     void keyPressed(KeyEvent ke) {

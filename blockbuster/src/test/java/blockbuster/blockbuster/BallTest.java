@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package blockbuster.blockbuster;
 
-import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
-import junit.framework.Assert;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -17,16 +16,17 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Teemu
+ * @author teeyoshi
  */
-public class BlockbusterTest {
-
+public class BallTest {
+    
     public App blockbuster;
     public Ball ball;
     public Board board;
-
-    public BlockbusterTest() {
+    
+    public BallTest() {
     }
+    
 
     @Before
     public void setUp() throws InterruptedException {
@@ -39,10 +39,8 @@ public class BlockbusterTest {
         frame.setSize(400, 600);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        
     }
-
+    
     public void setBall(int x, int y, int dx, int dy) {
         ball.setX(x);
         ball.setY(y);
@@ -89,40 +87,5 @@ public class BlockbusterTest {
         assertEquals("Ball: x:", blockbuster.getWidth() - ball.ballSize - 1, ball.getX());
         assertEquals("Ball: dx:", -1, ball.getDx());
     }
-    
-    // BOARDIN TESTAUS
-    // yli rajojen
-    
-    @Test
-    public void boardInBoundsLeft(){
-        board.setX(0);
-        board.setDx(-board.boardSpeed);
-        board.moveBoard();
-        
-        assertEquals("Board: x:", 0, board.getX());
-    }
-    
-    @Test
-    public void boardInBoundsRight(){
-        board.setX(blockbuster.getWidth() - board.boardWidth);
-        board.setDx(board.boardSpeed);
-        board.moveBoard();
-        
-        assertEquals("Board: x:", blockbuster.getWidth() - board.boardWidth, board.getX());
-    }
-    
-//    //TÖRMÄYSTESTI
-//    
-//    @Test
-//    public void ballHitsBoard(){
-//        setBall(0, board.y, 0, 1);
-//        board.x = 0;
-//        ball.moveBall();
-//        blockbuster.hitDetection();
-//        
-//        assertEquals("Ball hits board: y:", board.y - 1, ball.getY());
-//        assertEquals("Ball hits board: dy:", -1, ball.getDy());
-//        
-//    }
-//    
+
 }

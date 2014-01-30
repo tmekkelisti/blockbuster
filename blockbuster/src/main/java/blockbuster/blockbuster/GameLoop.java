@@ -13,6 +13,7 @@ package blockbuster.blockbuster;
 public class GameLoop{
     boolean isRunning;
     App bb;
+    int sleep = 3;
 
     public GameLoop(App bb) throws InterruptedException {
         this.isRunning = true;
@@ -25,8 +26,10 @@ public class GameLoop{
             bb.animate();
             bb.repaint();
             bb.hitDetection();
-            Thread.sleep(3);
+            Thread.sleep(sleep);
         }
     }
+    
+
     
 }
