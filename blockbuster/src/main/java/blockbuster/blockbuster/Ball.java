@@ -5,8 +5,8 @@ import java.awt.Rectangle;
 
 public class Ball {
 
-    private int x = 30;
-    private int y = 5;
+    private int x = 100;
+    private int y = 50;
     private int dx = 1;
     private int dy = 1;
     int ballSize = 10;
