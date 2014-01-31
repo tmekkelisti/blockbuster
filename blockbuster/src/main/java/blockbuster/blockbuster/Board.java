@@ -1,23 +1,30 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 package blockbuster.blockbuster;
 
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
+/**
+ *
+ * @author Teemu
+ */
 public class Board {
-
     int x = 0;
     int y = 530;
     int dx = 0;
     int boardHeight = 10;
     int boardWidth = 70;
     int boardSpeed = 2;
-    App blockbuster;
+    Logic logic;
     
 
-    public Board(App blockbuster) {
-        this.blockbuster = blockbuster;
+    public Board(Logic logic) {
+        this.logic = logic;
 
     }
 
@@ -26,24 +33,22 @@ public class Board {
     }
 
     public void moveBoard() {
-        if (x + dx > 0 && x + dx < blockbuster.getWidth() - boardWidth) {
+        if (x + dx > 0 && x + dx < logic.ui.getWidth() - boardWidth) {
             x += dx;
         }
 
     }
 
-    void keyReleased(KeyEvent ke) {
-        dx = 0;
-        
+    public void moveLeft(){
+        setDx(-boardSpeed);
     }
-
-    void keyPressed(KeyEvent ke) {
-        if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
-            dx = -boardSpeed;
-        }
-        if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
-            dx = boardSpeed;
-        }
+    
+    public void moveRight(){
+        setDx(boardSpeed);
+    }
+    
+    public void stopMoving(){
+        setDx(0);
     }
     
     public Rectangle getBounds(){
@@ -65,7 +70,4 @@ public class Board {
     public void setDx(int dx) {
         this.dx = dx;
     }
-    
-    
-    
 }

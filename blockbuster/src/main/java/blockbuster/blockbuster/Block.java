@@ -14,7 +14,6 @@ import java.awt.Rectangle;
  * @author Teemu
  */
 public class Block {
-
     int x;
     int y;
     int blockHeight = 10;

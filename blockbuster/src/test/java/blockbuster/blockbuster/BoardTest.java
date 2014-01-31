@@ -20,25 +20,27 @@ import static org.junit.Assert.*;
  */
 public class BoardTest {
     
-    public App blockbuster;
+    public Logic logic;
     public Ball ball;
     public Board board;
+    public JFrame frame;
     
     public BoardTest() {
     }
 
     @Before
     public void setUp() throws InterruptedException {
-        blockbuster = new App();
-        ball = new Ball(blockbuster);
-        board = new Board(blockbuster);
+        logic = new Logic();
+        ball = new Ball(logic);
+        board = new Board(logic);
 
-        JFrame frame = new JFrame("BLOCKBUSTER");
-        frame.add(blockbuster);
+        logic = new Logic();
+        frame = new JFrame("TESTINGI OUT");
+
         frame.setSize(400, 600);
-        frame.setVisible(true);
+        frame.getContentPane().add(logic.ui);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+        frame.setVisible(true);
         
     }
 
@@ -63,11 +65,11 @@ public class BoardTest {
     
     @Test
     public void boardInBoundsRight(){
-        board.setX(blockbuster.getWidth() - board.boardWidth);
+        board.setX(logic.ui.getWidth() - board.boardWidth);
         board.setDx(board.boardSpeed);
         board.moveBoard();
         
-        assertEquals("Board: x:", blockbuster.getWidth() - board.boardWidth, board.getX());
+        assertEquals("Board: x:", logic.ui.getWidth() - board.boardWidth, board.getX());
     }
     
 }

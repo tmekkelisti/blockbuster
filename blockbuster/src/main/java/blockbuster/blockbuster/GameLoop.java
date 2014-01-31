@@ -8,28 +8,25 @@ package blockbuster.blockbuster;
 
 /**
  *
- * @author teeyoshi@cs
+ * @author Teemu
  */
-public class GameLoop{
+public class GameLoop {
+    int sleep = 5;
     boolean isRunning;
-    App bb;
-    int sleep = 3;
+    Logic logic;
 
-    public GameLoop(App bb) throws InterruptedException {
+    public GameLoop(Logic logic) throws InterruptedException {
         this.isRunning = true;
-        this.bb = bb;
+        this.logic = logic;
         run();
     }
 
     public final void run() throws InterruptedException{
         while(isRunning){
-            bb.animate();
-            bb.repaint();
-            bb.hitDetection();
+            logic.moveAll();
+            logic.ui.repaint();
+            logic.hitDetection();
             Thread.sleep(sleep);
         }
     }
-    
-
-    
 }

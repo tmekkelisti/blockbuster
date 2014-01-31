@@ -1,32 +1,44 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 package blockbuster.blockbuster;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+/**
+ *
+ * @author Teemu
+ */
 public class Ball {
-
     private int x = 100;
     private int y = 50;
     private int dx = 1;
     private int dy = 1;
     int ballSize = 10;
-    App blockbuster;
+    Logic logic;
 
-    public Ball(App blockbuster) {
-        this.blockbuster = blockbuster;
+
+    public Ball(Logic logic) {
+        this.logic = logic;
     }
+    
+    
 
     public void moveBall() {
         if (x + dx < 0) {
             dx = 1;
         }
-        if (x + dx > blockbuster.getWidth() - ballSize) {
+        if (x + dx > logic.ui.getWidth() - ballSize) {
             dx = -1;
         }
         if (y + dy < 0) {
             dy = 1;
         }
-        if (y + dy > blockbuster.getHeight() - ballSize) {
+        if (y + dy > logic.ui.getHeight() - ballSize) {
             dy = -1;
         }
 
@@ -78,12 +90,4 @@ public class Ball {
     public void setDy(int dy) {
         this.dy = dy;
     }
-
-    
-
-   
-
-    
-    
-   
 }

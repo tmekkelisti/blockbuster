@@ -20,24 +20,26 @@ import static org.junit.Assert.*;
  */
 public class BlockTest {
     
-    public App blockbuster;
+    public Logic logic;
     public Ball ball;
-    
+    public Board board;
+    public JFrame frame;
     public BlockTest() {
     }
 
     @Before
     public void setUp() throws InterruptedException {
-        blockbuster = new App();
-        ball = new Ball(blockbuster);
+        logic = new Logic();
+        ball = new Ball(logic);
+        board = new Board(logic);
 
-        JFrame frame = new JFrame("BLOCKBUSTER");
-        frame.add(blockbuster);
+        logic = new Logic();
+        frame = new JFrame("TESTINGI OUT");
+
         frame.setSize(400, 600);
-        frame.setVisible(true);
+        frame.getContentPane().add(logic.ui);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        
+        frame.setVisible(true);
     }
 
     public void setBall(int x, int y, int dx, int dy) {
