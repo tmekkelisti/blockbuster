@@ -1,10 +1,10 @@
+package blockbuster.blockbuster;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-package blockbuster.blockbuster;
 
 import javax.swing.JFrame;
 import org.junit.After;
@@ -16,18 +16,25 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author teeyoshi
+ * @author teeyoshi@cs
  */
-public class BoardTest {
+public class LogicTest {
     
     public Logic logic;
-    public JFrame frame;
+    public Ball ball;
+    public Board board;
+    JFrame frame;
     
-    public BoardTest() {
+    public LogicTest() {
     }
+    
 
     @Before
     public void setUp() throws InterruptedException {
+        logic = new Logic();
+        ball = new Ball(logic);
+        board = new Board(logic);
+
         logic = new Logic();
         frame = new JFrame("TESTINGI OUT");
 
@@ -35,35 +42,30 @@ public class BoardTest {
         frame.getContentPane().add(logic.ui);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
-        
     }
-
+    
     public void setBall(int x, int y, int dx, int dy) {
         logic.ball.setX(x);
         logic.ball.setY(y);
         logic.ball.setDx(dx);
         logic.ball.setDy(dy);
     }
+    
+    @Test
+    public void hitDetectedtoBlock(){
+        logic.createBlocks();
+        setBall(10, 50, 0, -1);
+        logic.ball.moveBall();
+        
+        assertEquals("hitToBlock: ", true, logic.hitDetection());
+    }
+    
+    @Test
+    public void hitDetectedtoBoard(){
+        setBall(logic.board.x, logic.board.y, 0, 1);
+        logic.ball.moveBall();
+        
+        assertEquals("hitToBoard: ", true, logic.hitDetection());
+    }
 
-    // BOARDIN TESTAUS
-    // yli rajojen
-    
-    @Test
-    public void boardInBoundsLeft(){
-        logic.board.setX(0);
-        logic.board.setDx(-logic.board.boardSpeed);
-        logic.board.moveBoard();
-        
-        assertEquals("Board: x:", 0, logic.board.getX());
-    }
-    
-    @Test
-    public void boardInBoundsRight(){
-        logic.board.setX(logic.ui.getWidth() - logic.board.boardWidth);
-        logic.board.setDx(logic.board.boardSpeed);
-        logic.board.moveBoard();
-        
-        assertEquals("Board: x:", logic.ui.getWidth() - logic.board.boardWidth, logic.board.getX());
-    }
-    
 }

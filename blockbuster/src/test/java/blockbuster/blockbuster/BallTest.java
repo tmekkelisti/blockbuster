@@ -21,8 +21,6 @@ import static org.junit.Assert.*;
 public class BallTest {
     
     public Logic logic;
-    public Ball ball;
-    public Board board;
     JFrame frame;
     
     public BallTest() {
@@ -31,10 +29,7 @@ public class BallTest {
 
     @Before
     public void setUp() throws InterruptedException {
-        logic = new Logic();
-        ball = new Ball(logic);
-        board = new Board(logic);
-
+ 
         logic = new Logic();
         frame = new JFrame("TESTINGI OUT");
 
@@ -52,50 +47,50 @@ public class BallTest {
     }
     
     public void setBall(int x, int y, int dx, int dy) {
-        ball.setX(x);
-        ball.setY(y);
-        ball.setDx(dx);
-        ball.setDy(dy);
+        logic.ball.setX(x);
+        logic.ball.setY(y);
+        logic.ball.setDx(dx);
+        logic.ball.setDy(dy);
     }
 
-    // PALLON TESTAUS
-    // pallo ei liiku yli rajojen
-//    @Test
-//    public void ballInBoundsTop() {
-//        setBall(0, 0, 0, -1);
-//        ball.moveBall();
-//
-//        assertEquals("Ball: y:", 1, ball.getY());
-//        assertEquals("Ball: dy:", 1, ball.getDy());
-//
-//    }
+//     PALLON TESTAUS
+//     pallo ei liiku yli rajojen
+    @Test
+    public void ballInBoundsTop() {
+        setBall(0, 0, 0, -1);
+        logic.ball.moveBall();
+
+        assertEquals("Ball: y:", 1, logic.ball.getY());
+        assertEquals("Ball: dy:", 1, logic.ball.getDy());
+
+    }
 
     @Test
     public void ballInBoundsBottom() {
-        setBall(0,logic.ui.getHeight() - ball.ballSize, 0, 1);
-        ball.moveBall();
+        setBall(0,logic.ui.getHeight() - logic.ball.ballSize, 0, 1);
+        logic.ball.moveBall();
         
-        assertEquals("Ball: y:", logic.ui.getHeight() - ball.ballSize - 1, ball.getY());
-        assertEquals("Ball: dy:", -1, ball.getDy());
+        assertEquals("Ball: y:", logic.ui.getHeight() - logic.ball.ballSize - 1, logic.ball.getY());
+        assertEquals("Ball: dy:", -1, logic.ball.getDy());
         
     }
 
-//    @Test
-//    public void ballInBoundsLeft() {
-//        setBall(0, 0, -1, 0);
-//        ball.moveBall();
-//        
-//        assertEquals("Ball: x:", 1, ball.getX());
-//        assertEquals("Ball: dx:", 1, ball.getDx());
-//    }
+    @Test
+    public void ballInBoundsLeft() {
+        setBall(0, 0, -1, 0);
+        logic.ball.moveBall();
+        
+        assertEquals("Ball: x:", 1, logic.ball.getX());
+        assertEquals("Ball: dx:", 1, logic.ball.getDx());
+    }
     
     @Test
     public void ballInBoundsRight(){
-        setBall(logic.ui.getWidth() - ball.ballSize, 0, 1, 0);
-        ball.moveBall();
+        setBall(logic.ui.getWidth() - logic.ball.ballSize, 0, 1, 0);
+        logic.ball.moveBall();
         
-        assertEquals("Ball: x:", logic.ui.getWidth() - ball.ballSize - 1, ball.getX());
-        assertEquals("Ball: dx:", -1, ball.getDx());
+        assertEquals("Ball: x:", logic.ui.getWidth() - logic.ball.ballSize - 1, logic.ball.getX());
+        assertEquals("Ball: dx:", -1, logic.ball.getDx());
     }
 
 }

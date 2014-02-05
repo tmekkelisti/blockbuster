@@ -14,6 +14,7 @@ public class Logic {
     Block[] blocks;
     UI ui;
 
+
     public Logic() throws InterruptedException {
         init();
     }
@@ -23,7 +24,6 @@ public class Logic {
         board = new Board(this);
         ui = new UI(this);
         createBlocks();
-
     }
     
     void keyPressed(int keyCode) {
@@ -44,13 +44,19 @@ public class Logic {
         board.stopMoving();
     }
 
+    
 
+
+    
+    
     void moveAll() {
         ball.moveBall();
         board.moveBoard();
     }
+    
 
-    private void createBlocks() {
+
+    public void createBlocks() {
         blocks = new Block[4];
         blocks[0] = new Block(5, 50);
         blocks[1] = new Block(250, 50);
@@ -58,62 +64,87 @@ public class Logic {
         blocks[3] = new Block(250, 65);
     }
 
-   public void hitDetection(){
+   public boolean hitDetection(){
         if(ball.getBounds().intersects(board.getBounds())){
             boardCollision();
+            return true;
         }else{
             for(Block block : blocks) {
                 if (ball.getBounds().intersects(block.getBounds())){
                     blockCollision(block);
-                    break;
+                    return true;
                 }
             }
         }
-    }
+        return false;
+        }
+    
    
    public void boardCollision(){
-        
-            ball.setDy(-1);
-        
+       ball.setDy(-1);
+       
+       if(ball.getX() + (ball.ballSize / 2) > board.getX() + (board.boardWidth / 2)){
+           ball.setDx(ball.getDx());
+       }else{
+           ball.setDx(- ball.getDx());
+       }
+       
+       
     }
     
     public void blockCollision(Block block){
         
-        int ballLeft = ball.getX();
-        int ballHeight = (int)ball.getBounds().getHeight();
-        int ballWidth = (int)ball.getBounds().getWidth();
-        int ballTop = ball.getY();
-        
-        Point pointRight = new Point(ballLeft + ballWidth + 1, ballTop);
-        Point pointLeft = new Point(ballLeft - 1, ballTop);
-        Point pointTop = new Point(ballLeft, ballTop - 1);
-        Point pointBottom = new Point(ballLeft, ballTop + ballHeight + 1);
-        
-        if(block.getBounds().contains(pointBottom)){
-            ball.setDy(-1);
-        }
-        if(block.getBounds().contains(pointTop)){
-            ball.setDy(1);
-        }
-        if(block.getBounds().contains(pointLeft)){
-            ball.setDx(1);
-        }
-        if(block.getBounds().contains(pointRight)){
-            ball.setDx(-1);
-        }
-        
-//        if(ball.getY() <= block.y - (block.blockHeight / 2)){
-//            ball.setDy(1);
-//        }
-//        if(ball.getDy() >= block.y + (block.blockHeight / 2)){
+//        int ballLeft = ball.getX();
+//        int ballHeight = (int)ball.getBounds().getHeight();
+//        int ballWidth = (int)ball.getBounds().getWidth();
+//        int ballTop = ball.getY();
+//        
+//        Point pointRight = new Point(ballLeft + ballWidth + 1, ballTop);
+//        Point pointLeft = new Point(ballLeft - 1, ballTop);
+//        Point pointTop = new Point(ballLeft, ballTop - 1);
+//        Point pointBottom = new Point(ballLeft, ballTop + ballHeight + 1);
+//        
+//        if(block.getBounds().contains(pointBottom)){
 //            ball.setDy(-1);
 //        }
-//        if(ball.getX() < block.x){
-//            ball.setDx(-1);
+//        if(block.getBounds().contains(pointTop)){
+//            ball.setDy(1);
 //        }
-//        if(ball.getX() > block.x){
+//        if(block.getBounds().contains(pointLeft)){
 //            ball.setDx(1);
 //        }
+//        if(block.getBounds().contains(pointRight)){
+//            ball.setDx(-1);
+//        }
+        
+        if(ball.getY() >= block.y - (block.blockHeight / 2)){
+            ball.setDy(1);
+        }
+        if(ball.getY() <= block.y + (block.blockHeight / 2)){
+            ball.setDy(-1);
+        }
+        if(ball.getX() < block.x){
+            ball.setDx(-1);
+        }
+        if(ball.getX() > block.x){
+            ball.setDx(1);
+        }
+        
+//        int thresholdW = ((int)ball.getBounds().getWidth() + block.blockWidth) / 2;
+//        int thresholdH = ((int)ball.getBounds().getHeight() + block.blockHeight) / 2;
+//        
+//        int diffW = Math.abs(block.x - ball.getX());
+//        int diffH = Math.abs(block.y - ball.getY());
+//        
+//        int sideIndication = Math.abs(diffW - thresholdW) - Math.abs(diffH - thresholdH);
+//        
+//        if(sideIndication <= 0){
+//            ball.setDy(- ball.getDy());
+//        }
+//        if(sideIndication >= 0){
+//            ball.setDx(- ball.getDx());
+//        }
+        
         block.setDestroyed(true);
     }
     

@@ -3,15 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package blockbuster.blockbuster;
+
+import java.awt.event.KeyEvent;
 
 /**
  *
  * @author Teemu
  */
 public class GameLoop {
-    int sleep = 5;
+
+    int sleep = 2;
     boolean isRunning;
     Logic logic;
 
@@ -21,12 +23,18 @@ public class GameLoop {
         run();
     }
 
-    public final void run() throws InterruptedException{
-        while(isRunning){
+
+    public final void run() throws InterruptedException {
+        while (isRunning) {
             logic.moveAll();
             logic.ui.repaint();
             logic.hitDetection();
             Thread.sleep(sleep);
         }
     }
+
+    public void setRunning(boolean set) {
+        this.isRunning = set;
+    }
+
 }
