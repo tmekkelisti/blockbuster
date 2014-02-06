@@ -4,8 +4,7 @@ import java.awt.Point;
 import java.awt.event.KeyEvent;
 
 /**
- *
- * @author Teemu
+ * Pelin logiikka luokka
  */
 public class Logic {
 
@@ -29,8 +28,7 @@ public class Logic {
         board = new Board(this);
         ui = new UI(this);
         startGame();
-//        createBlocks();
-//        lives = 3;
+
     }
     
     /**

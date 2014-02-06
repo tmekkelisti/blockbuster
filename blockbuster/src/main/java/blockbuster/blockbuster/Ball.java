@@ -1,17 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package blockbuster.blockbuster;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
 /**
- *
- * @author Teemu
+ * Ball-luokka määrittelee pallon ja liikkumisen framen sisällä
  */
 public class Ball {
     private int x = 100;

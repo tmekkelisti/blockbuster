@@ -1,7 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * UI luokka huolehtii piirtämisestä ja näppäinten kuuntelusta
  */
 package blockbuster.blockbuster;
 
@@ -42,7 +40,6 @@ public class UI extends JPanel implements KeyListener {
         g2d.drawString("LAUNCH BALL: 'SPACE'", 70, 565);
         g2d.drawString("RESTART: 'ENTER'", 270, 565);
         
-        if()
         
         
         logic.ball.paint(g2d);
