@@ -24,6 +24,7 @@ public class LogicTest {
     public Ball ball;
     public Board board;
     JFrame frame;
+    GameLoop loop;
     
     public LogicTest() {
     }
@@ -31,7 +32,6 @@ public class LogicTest {
 
     @Before
     public void setUp() throws InterruptedException {
-        logic = new Logic();
         ball = new Ball(logic);
         board = new Board(logic);
 
@@ -42,6 +42,9 @@ public class LogicTest {
         frame.getContentPane().add(logic.ui);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
+        
+        //loop = new GameLoop(logic);
+        
     }
     
     public void setBall(int x, int y, int dx, int dy) {
@@ -67,5 +70,26 @@ public class LogicTest {
         
         assertEquals("hitToBoard: ", true, logic.hitDetection());
     }
+    
+    @Test
+    public void checkLivesChecks(){
+        logic.lives = 1;
+        logic.checkLives();
+        logic.checkLives();
+        
+        assertEquals("lives: ", 3, logic.lives);
+    }
+    
+//    @Test
+//    public void gameOverChecks(){
+//        logic.lives = 1;
+//        logic.setPause(false);
+//        setBall(0, 590, 0, 1);
+//
+//        
+//        assertEquals("lives: ", true, logic.gameOver());
+//
+//        
+//    }
 
 }

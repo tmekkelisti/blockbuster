@@ -31,7 +31,7 @@ public class Blockbuster {
         frame.getContentPane().add(logic.ui);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
-        loop = new GameLoop(logic, kokeilu);
+        loop = new GameLoop(logic);
 
         
     }

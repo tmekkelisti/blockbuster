@@ -16,12 +16,11 @@ public class GameLoop {
     int sleep = 2;
     boolean isRunning;
     Logic logic;
-    UI_kokeilu ui_kokeilu;
 
-    public GameLoop(Logic logic, UI_kokeilu kokeilu) throws InterruptedException {
+
+    public GameLoop(Logic logic) throws InterruptedException {
         this.isRunning = true;
         this.logic = logic;
-        this.ui_kokeilu = kokeilu;
         run();
     }
 

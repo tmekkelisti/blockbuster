@@ -42,6 +42,9 @@ public class UI extends JPanel implements KeyListener {
         g2d.drawString("LAUNCH BALL: 'SPACE'", 70, 565);
         g2d.drawString("RESTART: 'ENTER'", 270, 565);
         
+        if()
+        
+        
         logic.ball.paint(g2d);
         logic.board.paint(g2d);
         

@@ -102,6 +102,9 @@ public class Logic {
         blocks[2] = new Block(5, 65);
         blocks[3] = new Block(250, 65);
     }
+    
+    
+    
 
     /**
      * tarkistaa törmääkö pallo ensin lautaan ja sitten tiileihin.
@@ -223,15 +226,19 @@ public class Logic {
     
     /**
      * Tarkastaa onko pallo pohjassa.
+     * Jos on niin resettaa pallon ja laudan sekä poistaa elämän
+     * @return 
      */
     
-    public void gameOver(){
+    public boolean gameOver(){
         if(ball.getY() + ball.ballSize == ui.getHeight()){
             setPause(true);
             ball.resetBall();
             board.resetBoard();
             checkLives();
+            return true;
         }
+        return false;
     }
     
     /**
