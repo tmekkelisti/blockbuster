@@ -21,8 +21,6 @@ import static org.junit.Assert.*;
 public class BoardTest {
     
     public Logic logic;
-    public Ball ball;
-    public Board board;
     public JFrame frame;
     
     public BoardTest() {
@@ -30,10 +28,6 @@ public class BoardTest {
 
     @Before
     public void setUp() throws InterruptedException {
-        logic = new Logic();
-        ball = new Ball(logic);
-        board = new Board(logic);
-
         logic = new Logic();
         frame = new JFrame("TESTINGI OUT");
 
@@ -45,10 +39,10 @@ public class BoardTest {
     }
 
     public void setBall(int x, int y, int dx, int dy) {
-        ball.setX(x);
-        ball.setY(y);
-        ball.setDx(dx);
-        ball.setDy(dy);
+        logic.ball.setX(x);
+        logic.ball.setY(y);
+        logic.ball.setDx(dx);
+        logic.ball.setDy(dy);
     }
 
     // BOARDIN TESTAUS
@@ -56,20 +50,20 @@ public class BoardTest {
     
     @Test
     public void boardInBoundsLeft(){
-        board.setX(0);
-        board.setDx(-board.boardSpeed);
-        board.moveBoard();
+        logic.board.setX(0);
+        logic.board.setDx(-logic.board.boardSpeed);
+        logic.board.moveBoard();
         
-        assertEquals("Board: x:", 0, board.getX());
+        assertEquals("Board: x:", 0, logic.board.getX());
     }
     
     @Test
     public void boardInBoundsRight(){
-        board.setX(logic.ui.getWidth() - board.boardWidth);
-        board.setDx(board.boardSpeed);
-        board.moveBoard();
+        logic.board.setX(logic.ui.getWidth() - logic.board.boardWidth);
+        logic.board.setDx(logic.board.boardSpeed);
+        logic.board.moveBoard();
         
-        assertEquals("Board: x:", logic.ui.getWidth() - board.boardWidth, board.getX());
+        assertEquals("Board: x:", logic.ui.getWidth() - logic.board.boardWidth, logic.board.getX());
     }
     
 }

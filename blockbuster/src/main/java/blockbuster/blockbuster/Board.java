@@ -31,6 +31,10 @@ public class Board {
     public void paint(Graphics2D board) {
         board.fillRect(x, y, boardWidth, boardHeight);
     }
+    
+    /**
+     * Liikuttaa lautaa pelilaudan puitteissa
+     */
 
     public void moveBoard() {
         if (x + dx > 0 && x + dx < logic.ui.getWidth() - boardWidth) {
@@ -50,6 +54,20 @@ public class Board {
     public void stopMoving(){
         setDx(0);
     }
+    
+    /**
+     * Asettaa laudan keskelle pelilautaa
+     */
+    
+    public void resetBoard(){
+//        this.x = (logic.ui.getWidth() / 2) - (this.boardWidth / 2);
+        this.x = 165;
+    }
+    
+    /**
+     * Palauttaa laudan Rectanglen
+     * @return 
+     */
     
     public Rectangle getBounds(){
         return new Rectangle(x, y, boardWidth, boardHeight);

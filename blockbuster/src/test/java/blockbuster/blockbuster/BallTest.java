@@ -29,6 +29,10 @@ public class BallTest {
 
     @Before
     public void setUp() throws InterruptedException {
+<<<<<<< HEAD
+=======
+ 
+>>>>>>> 9dce48ff0a1827b4e9d5ba7121324370b2f0d7fe
         logic = new Logic();
         frame = new JFrame("TESTINGI OUT");
         frame.setSize(400, 600);

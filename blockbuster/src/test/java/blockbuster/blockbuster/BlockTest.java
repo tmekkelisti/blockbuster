@@ -21,19 +21,15 @@ import static org.junit.Assert.*;
 public class BlockTest {
     
     public Logic logic;
-    public Ball ball;
-    public Board board;
     public JFrame frame;
+    
     public BlockTest() {
     }
 
     @Before
     public void setUp() throws InterruptedException {
         logic = new Logic();
-        ball = new Ball(logic);
-        board = new Board(logic);
 
-        logic = new Logic();
         frame = new JFrame("TESTINGI OUT");
 
         frame.setSize(400, 600);
@@ -43,10 +39,10 @@ public class BlockTest {
     }
 
     public void setBall(int x, int y, int dx, int dy) {
-        ball.setX(x);
-        ball.setY(y);
-        ball.setDx(dx);
-        ball.setDy(dy);
+        logic.ball.setX(x);
+        logic.ball.setY(y);
+        logic.ball.setDx(dx);
+        logic.ball.setDy(dy);
     }
     
     @Test
