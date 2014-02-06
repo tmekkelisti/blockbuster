@@ -9,10 +9,15 @@ import java.awt.event.KeyEvent;
  */
 public class Logic {
 
+    static final int UI_WIDTH = 400;
+    static final int UI_HEIGHT = 600;
+    
     Ball ball;
     Board board;
     Block[] blocks;
     UI ui;
+    boolean pause = false;
+    int lives;
 
 
     public Logic() throws InterruptedException {
@@ -23,8 +28,15 @@ public class Logic {
         ball = new Ball(this);
         board = new Board(this);
         ui = new UI(this);
-        createBlocks();
+        startGame();
+//        createBlocks();
+//        lives = 3;
     }
+    
+    /**
+     * Valvoo näppäimiä
+     * @param keyCode 
+     */
     
     void keyPressed(int keyCode) {
         switch (keyCode) {
@@ -33,6 +45,16 @@ public class Logic {
                 break;
             case KeyEvent.VK_RIGHT:
                 board.moveRight();
+                break;
+            case KeyEvent.VK_SPACE:
+                if(this.pause){
+                    setPause(false);
+                }else{
+                    setPause(true);
+                }
+                break;
+            case KeyEvent.VK_ENTER:
+                startGame();
                 break;
         }
     }
@@ -47,15 +69,32 @@ public class Logic {
     
 
 
+    /**
+     * liikuttaa palloa ja lautaa, jos pause = false
+     */
     
-    
-    void moveAll() {
-        ball.moveBall();
-        board.moveBoard();
+    public void moveAll() {
+        if(this.pause == false){
+            ball.moveBall();
+            board.moveBoard();
+        }
+
     }
     
+    /**
+     * Tällä voidaan pysäyttää pallon ja laudan liikkuminen
+     * @param set 
+     */
+
+    public void setPause(boolean set){
+        this.pause = set;
+    }
 
 
+    /**
+     * luo tiilet for-loopeilla
+     */
+    
     public void createBlocks() {
         blocks = new Block[4];
         blocks[0] = new Block(5, 50);
@@ -64,6 +103,13 @@ public class Logic {
         blocks[3] = new Block(250, 65);
     }
 
+    /**
+     * tarkistaa törmääkö pallo ensin lautaan ja sitten tiileihin.
+     * ajaa sen jälkeen collision metodit riippuen kumpaan osuu.
+     * Tiiliin osuessa metodin mukana lähetetään itse tiili parametrinä
+     * @return 
+     */
+    
    public boolean hitDetection(){
         if(ball.getBounds().intersects(board.getBounds())){
             boardCollision();
@@ -79,18 +125,33 @@ public class Logic {
         return false;
         }
     
+   /**
+    * Laudan törmäyksen logiikka.
+    * Pallon osuessa vasempaan reunaan kimpoaa vasemmalle ja vice versa
+    */
+   
    
    public void boardCollision(){
+       
+       int boardCenter = board.getX() + (board.boardWidth / 2);
+       int ballCenter = ball.getX() + (ball.ballSize / 2);
+       
        ball.setDy(-1);
        
-       if(ball.getX() + (ball.ballSize / 2) > board.getX() + (board.boardWidth / 2)){
-           ball.setDx(ball.getDx());
+       if(ballCenter > boardCenter){
+           ball.setDx(1);
        }else{
-           ball.setDx(- ball.getDx());
+           ball.setDx(-1);
        }
        
        
     }
+   
+   /**
+    * Tiilen törmäyksen logiikka.
+    * 
+    * @param block 
+    */
     
     public void blockCollision(Block block){
         
@@ -147,5 +208,43 @@ public class Logic {
         
         block.setDestroyed(true);
     }
+    
+    /**
+     * Resettaa koko pelin ja aloittaa elämät ja tiilet alusta
+     */
+    
+    public void startGame(){
+        setPause(true);
+        ball.resetBall();
+        board.resetBoard();
+        lives = 3;
+        createBlocks();
+    }
+    
+    /**
+     * Tarkastaa onko pallo pohjassa.
+     */
+    
+    public void gameOver(){
+        if(ball.getY() + ball.ballSize == ui.getHeight()){
+            setPause(true);
+            ball.resetBall();
+            board.resetBoard();
+            checkLives();
+        }
+    }
+    
+    /**
+     * Vähentää elämiä ja jos alle nolla aloittaa uuden pelin
+     */
+    
+    public void checkLives(){
+        if(lives>0){
+            lives--;
+        }else{
+            startGame();
+        }
+    }
+
     
 }

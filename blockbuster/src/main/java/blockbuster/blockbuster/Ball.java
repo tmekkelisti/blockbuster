@@ -26,7 +26,9 @@ public class Ball {
         this.logic = logic;
     }
     
-    
+    /**
+     * Liikuttaa ja kimmottelee palloa pelilaudan puitteissa
+     */
 
     public void moveBall() {
         if (x + dx < 0) {
@@ -48,6 +50,11 @@ public class Ball {
 
         
     }
+    
+    /**
+     * Palauttaa pallon Rectanglen hitDetectioniin
+     * @return 
+     */
 
     public Rectangle getBounds(){
         return new Rectangle(x,y,ballSize,ballSize);
@@ -57,7 +64,17 @@ public class Ball {
         ball.fillOval(x, y, ballSize, ballSize);
     }
     
+    /**
+     * Asettaa pallon pelilaudan keskelle laudan korkeudelle
+     */
     
+    public void resetBall(){
+        this.y = 520;
+//        this.x = (logic.ui.getWidth() / 2) - (this.ballSize / 2);
+        this.x = 195;
+        this.dy = -1;
+        this.dx = 0;
+    }
 
     public int getX() {
         return x;
