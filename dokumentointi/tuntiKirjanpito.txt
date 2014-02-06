@@ -4,3 +4,4 @@
 230114 4h   viilauksia, testejä, hit detection
 290114 3h   Laudan kimpoilu, kokeiluja
 300114 5h   Refaktorointia, blokkien kimmotus
+310114 4h   Iso refaktorointi, nyt toiminnallisuudet eriytetty kunnolla
