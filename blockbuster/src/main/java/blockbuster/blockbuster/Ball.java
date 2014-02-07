@@ -7,6 +7,7 @@ import java.awt.Rectangle;
  * Ball-luokka määrittelee pallon ja liikkumisen framen sisällä
  */
 public class Ball {
+
     private int x = 100;
     private int y = 50;
     private int dx = 1;
@@ -14,15 +15,13 @@ public class Ball {
     int ballSize = 10;
     Logic logic;
 
-
     public Ball(Logic logic) {
         this.logic = logic;
     }
-    
+
     /**
      * Liikuttaa ja kimmottelee palloa pelilaudan puitteissa
      */
-
     public void moveBall() {
         if (x + dx < 0) {
             dx = 1;
@@ -40,28 +39,25 @@ public class Ball {
         x += dx;
         y += dy;
 
-
-        
     }
-    
+
     /**
      * Palauttaa pallon Rectanglen hitDetectioniin
-     * @return 
+     *
+     * @return
      */
-
-    public Rectangle getBounds(){
-        return new Rectangle(x,y,ballSize,ballSize);
+    public Rectangle getBounds() {
+        return new Rectangle(x, y, ballSize, ballSize);
     }
-    
+
     public void paint(Graphics ball) {
         ball.fillOval(x, y, ballSize, ballSize);
     }
-    
+
     /**
      * Asettaa pallon pelilaudan keskelle laudan korkeudelle
      */
-    
-    public void resetBall(){
+    public void resetBall() {
         this.y = 520;
 //        this.x = (logic.ui.getWidth() / 2) - (this.ballSize / 2);
         this.x = 195;
@@ -99,5 +95,11 @@ public class Ball {
 
     public void setDy(int dy) {
         this.dy = dy;
+    }
+
+    public boolean stopBall() {
+        this.dx = 0;
+        this.dy = 0;
+        return true;
     }
 }

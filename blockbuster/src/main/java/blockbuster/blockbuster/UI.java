@@ -36,9 +36,11 @@ public class UI extends JPanel implements KeyListener {
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
 
-        g2d.drawString("LIVES: " + logic.lives, 10, 565);
-        g2d.drawString("LAUNCH BALL: 'SPACE'", 70, 565);
-        g2d.drawString("RESTART: 'ENTER'", 270, 565);
+        g2d.drawString("LIVES: " + logic.lives, 10, 35);
+        g2d.drawString("restart: 'ENTER'", 270, 20);
+        g2d.drawString("BLOCKS LEFT: " + logic.blocksLeft(), 10, 20);
+        
+        g2d.drawString(logic.info, 15, 555);
         
         
         

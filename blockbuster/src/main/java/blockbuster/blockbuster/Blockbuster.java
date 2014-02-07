@@ -25,7 +25,7 @@ public class Blockbuster {
 //        }
 //        );
         
-        frame = new JFrame("TESTINGI OUT");
+        frame = new JFrame("BLOCKBUSTERrr");
 
         frame.setSize(400, 600);
         frame.getContentPane().add(logic.ui);

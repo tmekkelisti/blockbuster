@@ -17,6 +17,9 @@ public class Logic {
     UI ui;
     boolean pause = false;
     int lives;
+    int blocksLeft;
+    String info;
+    
 
 
     public Logic() throws InterruptedException {
@@ -45,7 +48,7 @@ public class Logic {
                 board.moveRight();
                 break;
             case KeyEvent.VK_SPACE:
-                if(this.pause){
+                if(this.pause = !gameOver()){
                     setPause(false);
                 }else{
                     setPause(true);
@@ -75,6 +78,9 @@ public class Logic {
         if(this.pause == false){
             ball.moveBall();
             board.moveBoard();
+            infoString(" ");
+        }else{
+            board.stopMoving();
         }
 
     }
@@ -93,15 +99,33 @@ public class Logic {
      * luo tiilet for-loopeilla
      */
     
-    public void createBlocks() {
-        blocks = new Block[4];
-        blocks[0] = new Block(5, 50);
-        blocks[1] = new Block(250, 50);
-        blocks[2] = new Block(5, 65);
-        blocks[3] = new Block(250, 65);
+    public void createBlocks(){
+        blocks = new Block[42];
+        int z = 0;
+        for (int i = 0; i < 7; i++) {
+            for (int j = 0; j < 6; j++) {
+                blocks[z] = new Block(j * 60 + 17, i * 15 + 160);
+                z++;
+            }
+            
+        }
+        blocksLeft = blocks.length;
+        
     }
     
+    /**
+     * Kertoo monta tiiltä on jäljellä.
+     * Jos 0 niin voitto.
+     * @return 
+     */
     
+    public int blocksLeft(){
+        if(blocksLeft == 0){
+            infoString("YOU WIN!");
+            setPause(true);
+        }
+        return blocksLeft;
+    }
     
 
     /**
@@ -206,7 +230,7 @@ public class Logic {
 //        if(sideIndication >= 0){
 //            ball.setDx(- ball.getDx());
 //        }
-        
+        blocksLeft--;
         block.setDestroyed(true);
     }
     
@@ -218,8 +242,9 @@ public class Logic {
         setPause(true);
         ball.resetBall();
         board.resetBoard();
-        lives = 3;
+        lives = 4;
         createBlocks();
+        infoString("press 'SPACEBAR' to launch!");
     }
     
     /**
@@ -229,6 +254,8 @@ public class Logic {
      */
     
     public boolean gameOver(){
+        
+        
         if(ball.getY() + ball.ballSize == ui.getHeight()){
             setPause(true);
             ball.resetBall();
@@ -247,9 +274,20 @@ public class Logic {
         if(lives>0){
             lives--;
         }else{
-            startGame();
+            ball.stopBall();
+            board.stopMoving();
+            infoString("GAME OVER!");
         }
     }
 
+    /**
+     * Info-stringi joka piirretään UI:ssä
+     * @param string 
+     */
+    
+    public void infoString(String string){
+        this.info = string;
+    }
+    
     
 }
