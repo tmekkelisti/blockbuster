@@ -41,6 +41,7 @@ public class UI extends JPanel implements KeyListener {
         g2d.drawString("BLOCKS LEFT: " + logic.blocksLeft(), 10, 20);
         
         g2d.drawString(logic.info, 15, 555);
+
         
         
         

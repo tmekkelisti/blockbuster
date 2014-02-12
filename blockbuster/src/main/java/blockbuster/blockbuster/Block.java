@@ -38,4 +38,8 @@ public class Block {
     public Rectangle getBounds(){
         return new Rectangle(x, y, blockWidth, blockHeight);
     }
+    
+    public void getCoordinates(){
+        System.out.println(x + ", " + y);
+    }
 }

@@ -57,7 +57,7 @@ public class LogicTest {
     @Test
     public void hitDetectedtoBlock(){
         logic.createBlocks();
-        setBall(10, 50, 0, -1);
+        setBall(17, 260, 0, -1);
         logic.ball.moveBall();
         
         assertEquals("hitToBlock: ", true, logic.hitDetection());
@@ -73,23 +73,24 @@ public class LogicTest {
     
     @Test
     public void checkLivesChecks(){
-        logic.lives = 1;
+        logic.lives = 2;
         logic.checkLives();
         logic.checkLives();
         
-        assertEquals("lives: ", 3, logic.lives);
+        assertEquals("lives: ", 0, logic.lives);
     }
     
-//    @Test
-//    public void gameOverChecks(){
-//        logic.lives = 1;
-//        logic.setPause(false);
-//        setBall(0, 590, 0, 1);
-//
-//        
+    
+    @Test
+    public void gameOverChecks(){
+        logic.lives = 1;
+        logic.setPause(false);
+        setBall(0, logic.ui.getHeight() - 10, 0, 1);
+
+        assertTrue(logic.gameOver());
 //        assertEquals("lives: ", true, logic.gameOver());
-//
-//        
-//    }
+
+        
+    }
 
 }

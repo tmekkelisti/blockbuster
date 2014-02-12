@@ -11,14 +11,14 @@ public class Logic {
     static final int UI_WIDTH = 400;
     static final int UI_HEIGHT = 600;
     
-    Ball ball;
-    Board board;
-    Block[] blocks;
-    UI ui;
-    boolean pause = false;
-    int lives;
-    int blocksLeft;
-    String info;
+    public Ball ball;
+    public Board board;
+    public Block[] blocks;
+    public UI ui;
+    private boolean pause = false;
+    public int lives;
+    public int blocksLeft;
+    public String info;
     
 
 
@@ -105,11 +105,13 @@ public class Logic {
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 6; j++) {
                 blocks[z] = new Block(j * 60 + 17, i * 15 + 160);
+//                blocks[z].getCoordinates();
                 z++;
             }
             
         }
         blocksLeft = blocks.length;
+        
         
     }
     
@@ -203,18 +205,27 @@ public class Logic {
 //            ball.setDx(-1);
 //        }
         
-        if(ball.getY() >= block.y - (block.blockHeight / 2)){
+//        if(ball.getY() >= block.y - (block.blockHeight / 2)){
+//            ball.setDy(1);
+//        }
+//        if(ball.getY() <= block.y + (block.blockHeight / 2)){
+//            ball.setDy(-1);
+//        }
+        if (ball.getY() >= block.y) {
             ball.setDy(1);
         }
-        if(ball.getY() <= block.y + (block.blockHeight / 2)){
+        if (ball.getY() <= block.y) {
             ball.setDy(-1);
         }
-        if(ball.getX() < block.x){
+        if (ball.getX() < block.x){
             ball.setDx(-1);
         }
-        if(ball.getX() > block.x){
+        if (ball.getX() > block.x){
             ball.setDx(1);
         }
+
+        
+        
         
 //        int thresholdW = ((int)ball.getBounds().getWidth() + block.blockWidth) / 2;
 //        int thresholdH = ((int)ball.getBounds().getHeight() + block.blockHeight) / 2;
@@ -245,6 +256,7 @@ public class Logic {
         lives = 4;
         createBlocks();
         infoString("press 'SPACEBAR' to launch!");
+
     }
     
     /**
@@ -261,6 +273,7 @@ public class Logic {
             ball.resetBall();
             board.resetBoard();
             checkLives();
+            
             return true;
         }
         return false;
@@ -289,5 +302,6 @@ public class Logic {
         this.info = string;
     }
     
+
     
 }
