@@ -3,6 +3,8 @@ package blockbuster.blockbuster;
 import blockbuster.UI.UI;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 /**
  * Pelin logiikka luokka
@@ -21,27 +23,34 @@ public class Logic {
     public int lives;
     public int blocksLeft;
     public String info;
-    
+    public StopWatch stopWatch;
+    public boolean isRemainingLives = true;
+    public double totalTime = 0;
+//    public FileRead fileRead;
+//    public double fastestTime;
 
 
-    public Logic() throws InterruptedException {
+    public Logic() throws InterruptedException, FileNotFoundException {
         init();
     }
     
-    public void init() throws InterruptedException{
+    public void init() throws InterruptedException, FileNotFoundException{
         ball = new Ball(this);
         board = new Board(this);
         ui = new UI(this);
+        stopWatch = new StopWatch(this);
+//        fileRead = new FileRead();
+//        fastestTime = fileRead.getFastestTime();
         startGame();
 
     }
     
     /**
-     * Valvoo näppäimiä
+     * Valvoo näppäimiä ja triggeroi sekkaria
      * @param keyCode 
      */
     
-    public void keyPressed(int keyCode) {
+    public void keyPressed(int keyCode) throws IOException {
         switch (keyCode) {
             case KeyEvent.VK_LEFT:
                 board.moveLeft();
@@ -52,12 +61,17 @@ public class Logic {
             case KeyEvent.VK_SPACE:
                 if(this.pause = !gameOver()){
                     setPause(false);
+                    if(!stopWatch.alreadyCounting()){
+                        stopWatch.startWatch();
+                    }
                 }else{
                     setPause(true);
                 }
                 break;
             case KeyEvent.VK_ENTER:
                 startGame();
+                stopWatch.startWatch();
+                isRemainingLives = true;
                 break;
         }
     }
@@ -124,10 +138,12 @@ public class Logic {
      * @return 
      */
     
-    public int blocksLeft(){
+    public int blocksLeft() throws IOException{
         if(blocksLeft == 0){
             infoString("YOU WIN!");
             setPause(true);
+            this.isRemainingLives = false;
+            checkTotalTime();
         }
         return blocksLeft;
     }
@@ -223,14 +239,14 @@ public class Logic {
      * @return 
      */
     
-    public boolean gameOver(){
+    public boolean gameOver() throws IOException{
         
         
         if(ball.getY() + ball.ballSize == ui.getHeight()){
             setPause(true);
             ball.resetBall();
             board.resetBoard();
-            checkLives();
+            checkRemainingLives();
             
             return true;
         }
@@ -239,18 +255,23 @@ public class Logic {
     
     /**
      * Vähentää elämiä ja jos alle nolla aloittaa uuden pelin
+     * @return 
      */
     
-    public void checkLives(){
+    public void checkRemainingLives() throws IOException{
         if(lives>0){
             lives--;
+            this.isRemainingLives = true;
         }else{
             ball.stopBall();
             board.stopMoving();
             infoString("GAME OVER!");
+            this.isRemainingLives = false;
+            checkTotalTime();
         }
     }
 
+    
     /**
      * Info-stringi joka piirretään UI:ssä
      * @param string 
@@ -264,6 +285,28 @@ public class Logic {
         return info;
     }
     
+    /**
+     * tallentaa yhden pelin kokonaisajan paikalliseen muuttujaan
+     */
     
+    public void checkTotalTime() throws IOException{
+        this.totalTime = stopWatch.totalTime();
+//        if(this.totalTime < this.fastestTime){
+//            fileRead.setFastestTime(totalTime);
+//            
+//        }
+    }
     
+    /**
+     * palauttaa ajan tai kokonaisajan UI:lle
+     * @return 
+     */
+    
+    public String timeString(){
+        if(isRemainingLives){
+            return String.valueOf(stopWatch.elapsedTime());
+        }else{
+            return String.valueOf(this.totalTime);
+        }
+    }
 }

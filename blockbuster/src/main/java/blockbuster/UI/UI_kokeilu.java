@@ -13,6 +13,9 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -130,7 +133,11 @@ public final class UI_kokeilu extends JFrame implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent ke) {
-        logic.keyPressed(ke.getKeyCode());
+        try {
+            logic.keyPressed(ke.getKeyCode());
+        } catch (IOException ex) {
+            Logger.getLogger(UI_kokeilu.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override

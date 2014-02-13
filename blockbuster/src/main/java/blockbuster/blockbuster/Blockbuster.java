@@ -2,6 +2,8 @@
 package blockbuster.blockbuster;
 
 import blockbuster.UI.UI_kokeilu;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
@@ -13,7 +15,7 @@ public class Blockbuster {
     GameLoop loop;
     UI_kokeilu kokeilu;
 
-    public Blockbuster() throws InterruptedException {
+    public Blockbuster() throws InterruptedException, FileNotFoundException, IOException {
         logic = new Logic();
  
 //        final UI_kokeilu kokeilu = new UI_kokeilu(logic);
@@ -39,7 +41,7 @@ public class Blockbuster {
     
     
     
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, IOException {
         Blockbuster game = new Blockbuster();
     }
     

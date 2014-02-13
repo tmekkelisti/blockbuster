@@ -6,6 +6,8 @@ package blockbuster.blockbuster;
  * and open the template in the editor.
  */
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import javax.swing.JFrame;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -29,7 +31,7 @@ public class LogicTest {
     
 
     @Before
-    public void setUp() throws InterruptedException {
+    public void setUp() throws InterruptedException, FileNotFoundException {
         logic = new Logic();
         frame = new JFrame("TESTINGI OUT");
         frame.setSize(400, 600);
@@ -66,17 +68,17 @@ public class LogicTest {
     }
     
     @Test
-    public void checkLivesWithRemainingLives(){
+    public void checkLivesWithRemainingLives() throws IOException{
         logic.lives = 2;
-        logic.checkLives();
-        logic.checkLives();
+        logic.checkRemainingLives();
+        logic.checkRemainingLives();
         
         assertEquals("lives: ", 0, logic.lives);
     }
     
-    public void checkLivesWithoutLives(){
+    public void checkLivesWithoutLives() throws IOException{
         logic.lives = 0;
-        logic.checkLives();
+        logic.checkRemainingLives();
         
         assertEquals("GAME OVER!", logic.getInfo());
         assertEquals(0, logic.ball.getDx());
@@ -84,7 +86,7 @@ public class LogicTest {
     }
     
     @Test
-    public void gameOverChecks(){
+    public void gameOverChecks() throws IOException{
         logic.lives = 1;
         logic.setPause(false);
         setBall(0, logic.ui.getHeight() - 10, 0, 1);
@@ -102,7 +104,7 @@ public class LogicTest {
     }
     
     @Test
-    public void notGameOverCheck(){
+    public void notGameOverCheck() throws IOException{
         setBall(50, 300, 0, 1);
         assertFalse(logic.gameOver());
     }

@@ -1,6 +1,7 @@
 package blockbuster.blockbuster;
 
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 
 /**
  * GameLoop-luokka huolehtii pelin päivittämisestä ja piirtämisestä
@@ -12,14 +13,14 @@ public class GameLoop {
     Logic logic;
 
 
-    public GameLoop(Logic logic) throws InterruptedException {
+    public GameLoop(Logic logic) throws InterruptedException, IOException {
         this.isRunning = true;
         this.logic = logic;
         run();
     }
 
 
-    public final void run() throws InterruptedException {
+    public final void run() throws InterruptedException, IOException {
         while (isRunning) {
             logic.gameOver();
             logic.moveAll();

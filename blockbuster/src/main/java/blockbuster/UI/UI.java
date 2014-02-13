@@ -11,6 +11,9 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -41,7 +44,7 @@ public class UI extends JPanel implements KeyListener {
         g2d.drawString("LIVES: " + logic.lives, 10, 35);
         g2d.drawString("restart: 'ENTER'", 270, 20);
         g2d.drawString("BLOCKS LEFT: " + logic.blocksLeft(), 10, 20);
-        
+        g2d.drawString(logic.timeString(), 270, 35);
         g2d.drawString(logic.info, 15, 555);
 
         
@@ -64,7 +67,11 @@ public class UI extends JPanel implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent ke) {
-        logic.keyPressed(ke.getKeyCode());
+        try {
+            logic.keyPressed(ke.getKeyCode());
+        } catch (IOException ex) {
+            Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
