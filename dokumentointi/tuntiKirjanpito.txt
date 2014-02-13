@@ -5,4 +5,7 @@
 290114 3h   Laudan kimpoilu, kokeiluja
 300114 5h   Refaktorointia, blokkien kimmotus
 310114 4h   Iso refaktorointi, nyt toiminnallisuudet eriytetty kunnolla
-060214 7h	
+060214 7h
+090214 1h
+120214 3h
+130214 5h   Ominaisuuksia ja testejä lisää	

@@ -6,6 +6,7 @@
 
 package blockbuster.blockbuster;
 
+import java.io.FileNotFoundException;
 import javax.swing.JFrame;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -27,7 +28,7 @@ public class BlockTest {
     }
 
     @Before
-    public void setUp() throws InterruptedException {
+    public void setUp() throws InterruptedException, FileNotFoundException {
         logic = new Logic();
 
         frame = new JFrame("TESTINGI OUT");
