@@ -90,7 +90,7 @@ public class Logic {
      * liikuttaa palloa ja lautaa, jos pause = false
      */
     
-    public void moveAll() {
+    public void moveAll() throws IOException {
         if(this.pause == false){
             ball.moveBall();
             board.moveBoard();
@@ -140,10 +140,11 @@ public class Logic {
     
     public int blocksLeft() throws IOException{
         if(blocksLeft == 0){
-            infoString("YOU WIN!");
-            setPause(true);
             this.isRemainingLives = false;
             checkTotalTime();
+            infoString("YOU WIN!");
+            setPause(true);
+
         }
         return blocksLeft;
     }
@@ -304,7 +305,7 @@ public class Logic {
     
     public String timeString(){
         if(isRemainingLives){
-            return String.valueOf(stopWatch.elapsedTime());
+            return String.valueOf(stopWatch.elapsedTime());    
         }else{
             return String.valueOf(this.totalTime);
         }

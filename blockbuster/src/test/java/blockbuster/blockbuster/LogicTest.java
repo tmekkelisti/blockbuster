@@ -110,7 +110,7 @@ public class LogicTest {
     }
     
     @Test
-    public void blockLeftChecks(){
+    public void blockLeftChecks() throws IOException{
         logic.createBlocks();
         for (int i = 0; i < logic.blocks.length; i++) {
             logic.blocksLeft--;
@@ -122,7 +122,7 @@ public class LogicTest {
     }
     
     @Test
-    public void startGame(){
+    public void startGame() throws IOException{
         logic.startGame();
         
         assertTrue(logic.isPause());
@@ -140,7 +140,7 @@ public class LogicTest {
     }
 
     @Test
-    public void boardLeftCollision(){
+    public void boardLeftCollision() throws IOException{
         setBall(logic.board.getX(), logic.board.y, 0, 1);
         logic.moveAll();
         logic.hitDetection();
@@ -150,7 +150,7 @@ public class LogicTest {
     }
     
     @Test
-    public void boardRightCollision(){
+    public void boardRightCollision() throws IOException{
         setBall(logic.board.getX() + 40, logic.board.y, 0, 1);
         logic.moveAll();
         logic.hitDetection();
@@ -160,7 +160,7 @@ public class LogicTest {
     }
     
     @Test
-    public void initInitializes() throws InterruptedException{
+    public void initInitializes() throws InterruptedException, IOException{
         assertNotNull(logic.board);
         assertNotNull(logic.ball);
         assertNotNull(logic.ui);
@@ -168,7 +168,7 @@ public class LogicTest {
     }
     
     @Test
-    public void moveAllMoves(){
+    public void moveAllMoves() throws IOException{
         logic.setPause(false);
         logic.moveAll();
         

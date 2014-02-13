@@ -22,6 +22,7 @@ public class GameLoop {
 
     public final void run() throws InterruptedException, IOException {
         while (isRunning) {
+            logic.blocksLeft();
             logic.gameOver();
             logic.moveAll();
             logic.ui.repaint();

@@ -43,7 +43,11 @@ public class UI extends JPanel implements KeyListener {
 
         g2d.drawString("LIVES: " + logic.lives, 10, 35);
         g2d.drawString("restart: 'ENTER'", 270, 20);
-        g2d.drawString("BLOCKS LEFT: " + logic.blocksLeft(), 10, 20);
+        try {
+            g2d.drawString("BLOCKS LEFT: " + logic.blocksLeft(), 10, 20);
+        } catch (IOException ex) {
+            Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
+        }
         g2d.drawString(logic.timeString(), 270, 35);
         g2d.drawString(logic.info, 15, 555);
 
