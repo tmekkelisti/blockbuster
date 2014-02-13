@@ -8,12 +8,16 @@ import java.awt.Rectangle;
  * Board-luokka handlaa laudan ja sen liikkumisen
  */
 public class Board {
+    
+    static final int RESET_STATE_X = 165;
+    
     int x = 0;
     int y = 530;
     int dx = 0;
     int boardHeight = 10;
     int boardWidth = 70;
     int boardSpeed = 2;
+
     Logic logic;
     
 
@@ -30,11 +34,12 @@ public class Board {
      * Liikuttaa lautaa pelilaudan puitteissa
      */
 
-    public void moveBoard() {
+    public boolean moveBoard() {
         if (x + dx > 0 && x + dx < logic.ui.getWidth() - boardWidth) {
             x += dx;
         }
 
+        return true;
     }
 
     public void moveLeft(){
@@ -51,11 +56,13 @@ public class Board {
     
     /**
      * Asettaa laudan keskelle pelilautaa
+     * @return 
      */
     
-    public void resetBoard(){
+    public boolean resetBoard(){
 //        this.x = (logic.ui.getWidth() / 2) - (this.boardWidth / 2);
-        this.x = 165;
+        this.x = RESET_STATE_X;
+        return true;
     }
     
     /**

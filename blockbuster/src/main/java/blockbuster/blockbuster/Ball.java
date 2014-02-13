@@ -8,6 +8,11 @@ import java.awt.Rectangle;
  */
 public class Ball {
 
+    static final int RESET_STATE_X = 195;
+    static final int RESET_STATE_Y = 520;
+    static final int RESET_STATE_DX = 0;
+    static final int RESET_STATE_DY = -1;
+    
     private int x = 100;
     private int y = 50;
     private int dx = 1;
@@ -22,7 +27,7 @@ public class Ball {
     /**
      * Liikuttaa ja kimmottelee palloa pelilaudan puitteissa
      */
-    public void moveBall() {
+    public boolean moveBall() {
         if (x + dx < 0) {
             dx = 1;
         }
@@ -39,6 +44,7 @@ public class Ball {
         x += dx;
         y += dy;
 
+        return true;
     }
 
     /**
@@ -57,12 +63,22 @@ public class Ball {
     /**
      * Asettaa pallon pelilaudan keskelle laudan korkeudelle
      */
-    public void resetBall() {
-        this.y = 520;
+    public boolean resetBall() {
+        this.y = RESET_STATE_Y;
 //        this.x = (logic.ui.getWidth() / 2) - (this.ballSize / 2);
-        this.x = 195;
-        this.dy = -1;
-        this.dx = 0;
+        this.x = RESET_STATE_X;
+        this.dy = RESET_STATE_DY;
+        this.dx = RESET_STATE_DX;
+        
+        return true;
+    }
+    
+    public void moveBallRight() {
+        this.x += 2;
+    }
+    
+    public void moveBallLeft(){
+        this.x += -2; 
     }
 
     public int getX() {

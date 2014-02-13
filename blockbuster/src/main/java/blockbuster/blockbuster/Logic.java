@@ -1,5 +1,6 @@
 package blockbuster.blockbuster;
 
+import blockbuster.UI.UI;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 
@@ -10,6 +11,7 @@ public class Logic {
 
     static final int UI_WIDTH = 400;
     static final int UI_HEIGHT = 600;
+    static final int LIVES_AT_START = 4;
     
     public Ball ball;
     public Board board;
@@ -39,7 +41,7 @@ public class Logic {
      * @param keyCode 
      */
     
-    void keyPressed(int keyCode) {
+    public void keyPressed(int keyCode) {
         switch (keyCode) {
             case KeyEvent.VK_LEFT:
                 board.moveLeft();
@@ -60,10 +62,10 @@ public class Logic {
         }
     }
 
-    void keyTyped(char keyChar) {
+    public void keyTyped(char keyChar) {
     }
 
-    void keyReleased(int keyCode) {
+    public void keyReleased(int keyCode) {
         board.stopMoving();
     }
 
@@ -80,7 +82,7 @@ public class Logic {
             board.moveBoard();
             infoString(" ");
         }else{
-            board.stopMoving();
+//            board.stopMoving();
         }
 
     }
@@ -94,6 +96,10 @@ public class Logic {
         this.pause = set;
     }
 
+    public boolean isPause(){
+        return this.pause;
+    }
+    
 
     /**
      * luo tiilet for-loopeilla
@@ -108,11 +114,8 @@ public class Logic {
 //                blocks[z].getCoordinates();
                 z++;
             }
-            
         }
         blocksLeft = blocks.length;
-        
-        
     }
     
     /**
@@ -170,8 +173,6 @@ public class Logic {
        }else{
            ball.setDx(-1);
        }
-       
-       
     }
    
    /**
@@ -181,36 +182,7 @@ public class Logic {
     */
     
     public void blockCollision(Block block){
-        
-//        int ballLeft = ball.getX();
-//        int ballHeight = (int)ball.getBounds().getHeight();
-//        int ballWidth = (int)ball.getBounds().getWidth();
-//        int ballTop = ball.getY();
-//        
-//        Point pointRight = new Point(ballLeft + ballWidth + 1, ballTop);
-//        Point pointLeft = new Point(ballLeft - 1, ballTop);
-//        Point pointTop = new Point(ballLeft, ballTop - 1);
-//        Point pointBottom = new Point(ballLeft, ballTop + ballHeight + 1);
-//        
-//        if(block.getBounds().contains(pointBottom)){
-//            ball.setDy(-1);
-//        }
-//        if(block.getBounds().contains(pointTop)){
-//            ball.setDy(1);
-//        }
-//        if(block.getBounds().contains(pointLeft)){
-//            ball.setDx(1);
-//        }
-//        if(block.getBounds().contains(pointRight)){
-//            ball.setDx(-1);
-//        }
-        
-//        if(ball.getY() >= block.y - (block.blockHeight / 2)){
-//            ball.setDy(1);
-//        }
-//        if(ball.getY() <= block.y + (block.blockHeight / 2)){
-//            ball.setDy(-1);
-//        }
+
         if (ball.getY() >= block.y) {
             ball.setDy(1);
         }
@@ -224,38 +196,24 @@ public class Logic {
             ball.setDx(1);
         }
 
-        
-        
-        
-//        int thresholdW = ((int)ball.getBounds().getWidth() + block.blockWidth) / 2;
-//        int thresholdH = ((int)ball.getBounds().getHeight() + block.blockHeight) / 2;
-//        
-//        int diffW = Math.abs(block.x - ball.getX());
-//        int diffH = Math.abs(block.y - ball.getY());
-//        
-//        int sideIndication = Math.abs(diffW - thresholdW) - Math.abs(diffH - thresholdH);
-//        
-//        if(sideIndication <= 0){
-//            ball.setDy(- ball.getDy());
-//        }
-//        if(sideIndication >= 0){
-//            ball.setDx(- ball.getDx());
-//        }
         blocksLeft--;
         block.setDestroyed(true);
     }
     
     /**
      * Resettaa koko pelin ja aloittaa elämät ja tiilet alusta
+     * @return 
      */
     
-    public void startGame(){
+    public boolean startGame(){
         setPause(true);
         ball.resetBall();
         board.resetBoard();
-        lives = 4;
+        lives = LIVES_AT_START;
         createBlocks();
         infoString("press 'SPACEBAR' to launch!");
+        
+        return true;
 
     }
     
@@ -301,7 +259,11 @@ public class Logic {
     public void infoString(String string){
         this.info = string;
     }
-    
 
+    public String getInfo() {
+        return info;
+    }
+    
+    
     
 }

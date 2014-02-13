@@ -21,8 +21,6 @@ import static org.junit.Assert.*;
 public class LogicTest {
     
     public Logic logic;
-    public Ball ball;
-    public Board board;
     JFrame frame;
     GameLoop loop;
     
@@ -32,12 +30,8 @@ public class LogicTest {
 
     @Before
     public void setUp() throws InterruptedException {
-        ball = new Ball(logic);
-        board = new Board(logic);
-
         logic = new Logic();
         frame = new JFrame("TESTINGI OUT");
-
         frame.setSize(400, 600);
         frame.getContentPane().add(logic.ui);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -72,7 +66,7 @@ public class LogicTest {
     }
     
     @Test
-    public void checkLivesChecks(){
+    public void checkLivesWithRemainingLives(){
         logic.lives = 2;
         logic.checkLives();
         logic.checkLives();
@@ -80,6 +74,14 @@ public class LogicTest {
         assertEquals("lives: ", 0, logic.lives);
     }
     
+    public void checkLivesWithoutLives(){
+        logic.lives = 0;
+        logic.checkLives();
+        
+        assertEquals("GAME OVER!", logic.getInfo());
+        assertEquals(0, logic.ball.getDx());
+        assertEquals(0, logic.ball.getDy());
+    }
     
     @Test
     public void gameOverChecks(){
@@ -88,9 +90,91 @@ public class LogicTest {
         setBall(0, logic.ui.getHeight() - 10, 0, 1);
 
         assertTrue(logic.gameOver());
-//        assertEquals("lives: ", true, logic.gameOver());
-
+        assertTrue(logic.isPause());
+        assertEquals(0, logic.lives);
+        assertEquals(logic.ball.RESET_STATE_X, logic.ball.getX());
+        assertEquals(logic.ball.RESET_STATE_Y, logic.ball.getY());
+        assertEquals(logic.ball.RESET_STATE_DX, logic.ball.getDx());
+        assertEquals(logic.ball.RESET_STATE_DY, logic.ball.getDy());
+        assertEquals(logic.board.RESET_STATE_X, logic.board.getX());
+        assertTrue(logic.ball.resetBall());
+        assertTrue(logic.board.resetBoard());
+    }
+    
+    @Test
+    public void notGameOverCheck(){
+        setBall(50, 300, 0, 1);
+        assertFalse(logic.gameOver());
+    }
+    
+    @Test
+    public void blockLeftChecks(){
+        logic.createBlocks();
+        for (int i = 0; i < logic.blocks.length; i++) {
+            logic.blocksLeft--;
+        }
         
+        assertEquals(0, logic.blocksLeft());
+        assertTrue(logic.isPause());
+        assertEquals("YOU WIN!", logic.getInfo());
+    }
+    
+    @Test
+    public void startGame(){
+        logic.startGame();
+        
+        assertTrue(logic.isPause());
+        assertEquals(logic.ball.RESET_STATE_X, logic.ball.getX());
+        assertEquals(logic.ball.RESET_STATE_Y, logic.ball.getY());
+        assertEquals(logic.ball.RESET_STATE_DX, logic.ball.getDx());
+        assertEquals(logic.ball.RESET_STATE_DY, logic.ball.getDy());
+        assertEquals(logic.board.RESET_STATE_X, logic.board.getX());
+        assertEquals(logic.LIVES_AT_START, logic.lives);
+        assertTrue(logic.ball.resetBall());
+        assertTrue(logic.board.resetBoard());
+        assertTrue(logic.startGame());
+        assertEquals(42, logic.blocksLeft());
+        assertEquals("press 'SPACEBAR' to launch!", logic.getInfo());
     }
 
+    @Test
+    public void boardLeftCollision(){
+        setBall(logic.board.getX(), logic.board.y, 0, 1);
+        logic.moveAll();
+        logic.hitDetection();
+        
+        assertEquals(-1, logic.ball.getDx());
+        assertEquals(-1, logic.ball.getDy());
+    }
+    
+    @Test
+    public void boardRightCollision(){
+        setBall(logic.board.getX() + 40, logic.board.y, 0, 1);
+        logic.moveAll();
+        logic.hitDetection();
+        
+        assertEquals(1, logic.ball.getDx());
+        assertEquals(-1, logic.ball.getDy());
+    }
+    
+    @Test
+    public void initInitializes() throws InterruptedException{
+        assertNotNull(logic.board);
+        assertNotNull(logic.ball);
+        assertNotNull(logic.ui);
+        startGame();
+    }
+    
+    @Test
+    public void moveAllMoves(){
+        logic.setPause(false);
+        logic.moveAll();
+        
+        assertTrue(logic.ball.moveBall());
+        assertTrue(logic.board.moveBoard());
+        assertEquals(" ", logic.getInfo());
+    }
+    
+    
+    
 }

@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package blockbuster.blockbuster;
+package blockbuster.UI;
 
+import blockbuster.blockbuster.Logic;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;

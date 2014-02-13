@@ -4,8 +4,10 @@
  * and open the template in the editor.
  */
 
-package blockbuster.blockbuster;
+package blockbuster.UI;
 
+import blockbuster.blockbuster.Block;
+import blockbuster.blockbuster.Logic;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
