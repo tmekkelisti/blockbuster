@@ -51,7 +51,7 @@ public class LogicTest {
     }
     
     @Test
-    public void hitDetectedtoBlock(){
+    public void hitDetectedtoBlock() throws IOException{
         logic.createBlocks();
         setBall(17, 260, 0, -1);
         logic.ball.moveBall();
@@ -60,7 +60,7 @@ public class LogicTest {
     }
     
     @Test
-    public void hitDetectedtoBoard(){
+    public void hitDetectedtoBoard() throws IOException{
         setBall(logic.board.x, logic.board.y, 0, 1);
         logic.ball.moveBall();
         
@@ -118,7 +118,7 @@ public class LogicTest {
         
         assertEquals(0, logic.blocksLeft());
         assertTrue(logic.isPause());
-        assertEquals("YOU WIN!", logic.getInfo());
+ 
     }
     
     @Test

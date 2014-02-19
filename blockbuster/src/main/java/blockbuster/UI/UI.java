@@ -48,8 +48,9 @@ public class UI extends JPanel implements KeyListener {
         } catch (IOException ex) {
             Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
         }
-        g2d.drawString(logic.timeString(), 270, 35);
         g2d.drawString(logic.info, 15, 555);
+        g2d.drawString("TIME: " + logic.timeString(), 270, 35);
+        
 
         
         
