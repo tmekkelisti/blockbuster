@@ -26,7 +26,7 @@ public class Logic {
     public StopWatch stopWatch;
     public boolean gameFinished = false;
 //    public double totalTime = 0;
-//    public FileRead fileRead;
+    public FileRead fileRead;
 //    public double fastestTime;
 //    public String timeString = "0";
 
@@ -39,7 +39,7 @@ public class Logic {
         board = new Board(this);
         ui = new UI(this);
         stopWatch = new StopWatch(this);
-//        fileRead = new FileRead();
+        fileRead = new FileRead();
 //        fastestTime = fileRead.getFastestTime();
         startGame();
 
@@ -79,6 +79,12 @@ public class Logic {
 
             case KeyEvent.VK_1:
                 playerWins();
+                break;
+            
+            case KeyEvent.VK_2:
+                fileRead.resetFastestTime();
+                break;
+                
         }
     }
 
@@ -148,6 +154,8 @@ public class Logic {
         ball.stopBall();
         board.stopMoving();
         stopWatch.lock = true;
+        checkHighScore();
+        
     }
 
     /**
@@ -301,4 +309,15 @@ public class Logic {
     public String timeString() {
         return String.valueOf(stopWatch.getTime());
     }
+    
+    public void checkHighScore() throws IOException{
+        
+        double highScore = fileRead.getFastestTime();
+        System.out.println(highScore);
+        if(highScore > stopWatch.getTime()){
+            fileRead.setFastestTime(stopWatch.getTime());
+            System.out.println("uus mestari");
+        }
+    }
+    
 }

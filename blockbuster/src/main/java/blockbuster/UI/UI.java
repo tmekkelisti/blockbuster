@@ -50,11 +50,7 @@ public class UI extends JPanel implements KeyListener {
         }
         g2d.drawString(logic.info, 15, 555);
         g2d.drawString("TIME: " + logic.timeString(), 270, 35);
-        
 
-        
-        
-        
         logic.ball.paint(g2d);
         logic.board.paint(g2d);
         
