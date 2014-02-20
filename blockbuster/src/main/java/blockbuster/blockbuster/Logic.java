@@ -25,22 +25,21 @@ public class Logic {
     public String info;
     public StopWatch stopWatch;
     public boolean gameFinished = false;
-//    public double totalTime = 0;
+    public boolean gameFinishedWIN = false;
+    public double highScore;
     public FileRead fileRead;
-//    public double fastestTime;
-//    public String timeString = "0";
 
-    public Logic() throws InterruptedException, FileNotFoundException {
+    public Logic() throws InterruptedException, FileNotFoundException, IOException {
         init();
     }
 
-    public void init() throws InterruptedException, FileNotFoundException {
+    public void init() throws InterruptedException, FileNotFoundException, IOException {
         ball = new Ball(this);
         board = new Board(this);
         ui = new UI(this);
         stopWatch = new StopWatch(this);
         fileRead = new FileRead();
-//        fastestTime = fileRead.getFastestTime();
+        
         startGame();
 
     }
@@ -147,6 +146,11 @@ public class Logic {
         return blocksLeft;
     }
 
+    /**
+     * tämä pysäyttää pelikellon ja tarkastuttaa ajan
+     * @throws IOException 
+     */
+    
     public void playerWins() throws IOException {
 
         stopWatch.stopWatch();
@@ -155,7 +159,8 @@ public class Logic {
         board.stopMoving();
         stopWatch.lock = true;
         checkHighScore();
-        
+        gameFinished = true;
+        gameFinishedWIN = true;
     }
 
     /**
@@ -200,7 +205,7 @@ public class Logic {
 
     /**
      * Tiilen törmäyksen logiikka. Pitää myös huolen voittamisesta.
-     *
+     * Tämä on tarkoituksella villi.
      * @param block
      */
     public void blockCollision(Block block) throws IOException {
@@ -230,7 +235,7 @@ public class Logic {
      *
      * @return
      */
-    public boolean startGame() {
+    public boolean startGame() throws IOException {
         setPause(true);
         ball.resetBall();
         board.resetBoard();
@@ -238,6 +243,9 @@ public class Logic {
         createBlocks();
         infoString("press 'SPACEBAR' to launch!");
         stopWatch.startWatch();
+        gameFinished = false;
+        gameFinishedWIN = false;
+        highScore = fileRead.getFastestTime();
         return true;
 
     }
@@ -275,6 +283,7 @@ public class Logic {
             infoString("GAME OVER!");
             stopWatch.stopWatch();
             stopWatch.lock = true;
+            gameFinished = true;
         }
     }
 
@@ -292,16 +301,6 @@ public class Logic {
     }
 
     /**
-     * tallentaa yhden pelin kokonaisajan paikalliseen muuttujaan
-     */
-//    public void checkTotalTime() throws IOException{
-//        this.totalTime = stopWatch.totalTime();
-//        if(this.totalTime < this.fastestTime){
-//            fileRead.setFastestTime(totalTime);
-//            
-//        }
-//    }
-    /**
      * palauttaa ajan tai kokonaisajan UI:lle
      *
      * @return
@@ -310,13 +309,21 @@ public class Logic {
         return String.valueOf(stopWatch.getTime());
     }
     
+    
+    /**
+     * lukee edellisen nopeimman ajan tiedostosta ja vertaa uuteen
+     * jos uusi on nopeampi niin kirjoitetaan se tiedostoon
+     * @throws IOException 
+     */
+    
     public void checkHighScore() throws IOException{
         
-        double highScore = fileRead.getFastestTime();
-        System.out.println(highScore);
-        if(highScore > stopWatch.getTime()){
+        highScore = fileRead.getFastestTime();
+        System.out.println(highScore);                      // debug
+        
+        if(highScore > stopWatch.getTime() && gameFinishedWIN){
             fileRead.setFastestTime(stopWatch.getTime());
-            System.out.println("uus mestari");
+            System.out.println("uus mestari");              //debug
         }
     }
     

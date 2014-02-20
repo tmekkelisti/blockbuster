@@ -31,8 +31,6 @@ public class UI extends JPanel implements KeyListener {
         addKeyListener(this);
 
     }
-    
-    
 
     @Override
     public void paint(Graphics g) {
@@ -53,12 +51,23 @@ public class UI extends JPanel implements KeyListener {
 
         logic.ball.paint(g2d);
         logic.board.paint(g2d);
-        
+
         for (Block block : logic.blocks) {
             if (!block.isDestroyed()) {
                 block.paint(g2d);
             }
         }
+
+        if (logic.gameFinished && logic.gameFinishedWIN) {
+            g2d.drawString("GAME OVER", 125, 300);
+            g2d.drawString("YOUR TIME:         " + logic.stopWatch.getTime(), 125, 330);
+
+                g2d.drawString("GAME RECORD: " + logic.highScore, 125, 345);
+                if(logic.stopWatch.getTime() < logic.highScore){
+                    g2d.drawString("CONGRATS! A NEW RECORD!", 125, 375);
+                }
+        }
+
     }
 
     @Override
@@ -79,6 +88,5 @@ public class UI extends JPanel implements KeyListener {
     public void keyReleased(KeyEvent ke) {
         logic.keyReleased(ke.getKeyCode());
     }
-
 
 }
