@@ -1,0 +1,11 @@
+BLOCKBUSTER-manuaali
+
+Tehtävä: Kimmota palloa alareunassa olevalla laudalla, niin että yläreunassa olevat kaikki tiilet tuhoutuvat mahdollisimman nopeasti. Nopein aika tallentuu muistiin.
+
+Elämiä on rajoitettu määrä ja jos pallo sujahtaa laudan ohi alareunaan, menettää pelaaja yhden elämän.
+
+NÄPPÄIN			TOIMINTO
+välilyönti		ampuu pallon irti laudasta
+enter			käynnistää pelin uudelleen
+vasen-nuoli		liikuttaa lautaa vasemmalle
+oikea-nuoli		liikuttaa lautaa oikealle

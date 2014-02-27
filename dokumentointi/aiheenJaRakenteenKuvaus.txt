@@ -1,0 +1,35 @@
+﻿AIHE: Breakout-pelin klooni (BLOCKBUSTER)
+Breakout-klooni, jossa siis kimmotellaan alareunan laudalla palloja ja rikotaan ylhäällä olevia tiiliä. Kun tiilit on tuhottu, niin taso on suoritettu. Jos pallo sujahtaa laudan ohi alareunaan niin game over tai elämän menetys
+
+Välttämättömät ominaisuudet:
+	- "Käyttöliittymä"
+	- Liikkuva ja "oikein" kimpoileva pallo
+	- Liikkuva (vasen/oikea) lauta
+	- Hajoavat tiilet
+
+Lisäominaisuudet ajan puitteissa:
+	- Pisteiden ja ajan lasku (high score) <<< TEHTY
+	- Kestävyydeltään erilaiset tiilet
+	- Bonukset tiilistä (laudan pituus, aseet, tuplapallot, jne..)
+	- Elämät <<< TEHTY
+
+Jos tosiaan aikaa (mukamas) riittäisi niin pelistä 2-pelaajan peli, joka muistuttaa Pongin ja Breakoutin fuusiota.
+
+
+RAKENNEKUVAUS
+
+Blockbuster-luokka on maini jossa käynnistetään logic, gameloop ja frame.
+
+Logic-luokka hoitaa pelin logiikan sekä luo loput tarvittavat komponentit. Myös näppäimien painallusten logiikka löytyy tästä luokasta.
+
+GameLoop-luokka hoitaa "pelimoottorin" virkaa looppaamalla tarvittavia logiikan metodeja ja UI:n piirtometodeja.
+
+UI-paketin UI-luokka hoitaa piirtämisen ja sen piirtometodit saavat datansa logiikasta.
+
+Ball-, Board- sekä Block-luokka hoitavat nimensä mukaisesti omat tehtävänsä
+
+StopWatch-luokka hoitaa sekkarin tehtäviä.
+
+FileRead-luokka hoitaa tiedoston lukemisen sekä kirjoittamisen.
+
+
