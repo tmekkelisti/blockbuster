@@ -25,9 +25,15 @@ public class Block {
         
     }
 
+    /**
+     * siirtää tiilen pelialueen ulkopuolelle pois näkyvistä ja
+     * settaa räjäytetyksi
+     * @param destroyed 
+     */
+    
     public void setDestroyed(boolean destroyed) {
-        x = 400;        //pelialueen ulkopuolelle
-        y = 600;        //pelialueen ulkopuolelle
+        x = 400;        
+        y = 600;        
         this.destroyed = destroyed;
     }
 

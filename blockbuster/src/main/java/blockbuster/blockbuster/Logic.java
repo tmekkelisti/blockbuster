@@ -1,7 +1,6 @@
 package blockbuster.blockbuster;
 
 import blockbuster.UI.UI;
-import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -33,6 +32,13 @@ public class Logic {
         init();
     }
 
+    /**
+     * Luo tarvittavat komponentit sekä käynnistää pelin
+     * @throws InterruptedException
+     * @throws FileNotFoundException
+     * @throws IOException 
+     */
+    
     public void init() throws InterruptedException, FileNotFoundException, IOException {
         ball = new Ball(this);
         board = new Board(this);
@@ -73,15 +79,16 @@ public class Logic {
                 break;
 
             case KeyEvent.VK_ESCAPE:
-                blocksLeft = 0;
+                //blocksLeft = 0;                       //debug
+
                 break;
 
             case KeyEvent.VK_1:
-                playerWins();
+                //playerWins();                         //debug
                 break;
             
             case KeyEvent.VK_2:
-                fileRead.resetFastestTime();
+                //fileRead.resetFastestTime();          //debug
                 break;
                 
         }
@@ -147,7 +154,7 @@ public class Logic {
     }
 
     /**
-     * tämä pysäyttää pelikellon ja tarkastuttaa ajan
+     * tämä pysäyttää pelikellon kun peli on läpi ja tarkastuttaa ajan
      * @throws IOException 
      */
     
@@ -168,7 +175,7 @@ public class Logic {
      * jälkeen collision metodit riippuen kumpaan osuu. Tiiliin osuessa metodin
      * mukana lähetetään itse tiili parametrinä
      *
-     * @return
+     * @return kertoo osuiko mihinkään
      */
     public boolean hitDetection() throws IOException {
         if (ball.getBounds().intersects(board.getBounds())) {
@@ -204,8 +211,9 @@ public class Logic {
     }
 
     /**
-     * Tiilen törmäyksen logiikka. Pitää myös huolen voittamisesta.
-     * Tämä on tarkoituksella villi.
+     * Tiilen törmäyksen logiikka. Pitää myös huolen voittamisesta laskemalla 
+     * tiiliä.
+     * Tämä on tarkoituksella jätetty villiksi.
      * @param block
      */
     public void blockCollision(Block block) throws IOException {
@@ -232,7 +240,7 @@ public class Logic {
 
     /**
      * Resettaa koko pelin ja aloittaa elämät ja tiilet alusta
-     *
+     * Myös aloittaa sekkarin ajastuksen
      * @return
      */
     public boolean startGame() throws IOException {
@@ -254,7 +262,7 @@ public class Logic {
      * Tarkastaa onko pallo pohjassa. Jos on niin resettaa pallon ja laudan sekä
      * poistaa elämän
      *
-     * @return
+     * @return kertoo mokasiko pelaaja pallon pohjaan
      */
     public boolean gameOver() throws IOException {
 
@@ -271,7 +279,7 @@ public class Logic {
 
     /**
      * Vähentää elämiä ja jos alle nolla aloittaa uuden pelin
-     *
+     * Asettaa myös sekkarille lukon
      * @return
      */
     public void checkRemainingLives() throws IOException {
@@ -319,11 +327,11 @@ public class Logic {
     public void checkHighScore() throws IOException{
         
         highScore = fileRead.getFastestTime();
-        System.out.println(highScore);                      // debug
+        System.out.println("haettu: " + highScore);                 // debug
         
-        if(highScore > stopWatch.getTime() && gameFinishedWIN){
+        if(highScore > stopWatch.getTime() && !gameFinished){
             fileRead.setFastestTime(stopWatch.getTime());
-            System.out.println("uus mestari");              //debug
+            System.out.println("uus mestari");                      //debug
         }
     }
     

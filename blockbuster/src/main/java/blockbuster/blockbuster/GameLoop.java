@@ -19,16 +19,22 @@ public class GameLoop {
         run();
     }
 
+    /**
+     * gameOver() tarkastaa jatkuvasti onko pallo pohjassa
+     * moveAll() liikuttaa esineitä ruudulla
+     * repaint() piirtää esineet uudestaan
+     * hitDetection() tarkastaa jos tulee osumia esineille
+     * sleep käytännössä kertoo pelin nopeuden (päivitystahdin)
+     * 
+     * @throws InterruptedException
+     * @throws IOException 
+     */
 
     public final void run() throws InterruptedException, IOException {
         while (isRunning) {
-//            logic.blocksLeft();
             logic.gameOver();
             logic.moveAll();
             logic.ui.repaint();
-//            ui_kokeilu.repaint();
-//            ui_kokeilu.gamePanel.revalidate();
-//            ui_kokeilu.gamePanel.repaint();
             logic.hitDetection();
             Thread.sleep(sleep);
         }

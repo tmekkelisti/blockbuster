@@ -17,6 +17,10 @@ public class StopWatch {
         this.lock = false;
     }
 
+    /**
+     * aloittaa ajanlaskun jos ei ole lukossa
+     */
+    
     public void startWatch() {
         if(!lock){
             this.start = System.currentTimeMillis();
@@ -25,6 +29,10 @@ public class StopWatch {
 
 
     }
+    
+    /**
+     * pysäyttää sekkarin
+     */
 
     public void stopWatch() {
         this.stop = System.currentTimeMillis();
@@ -32,6 +40,12 @@ public class StopWatch {
 
     }
 
+    /**
+     * Jos ajanlasku on käynnissä palauttaa sen hetkisen ajan.
+     * Jos ei niin palauttaa kokonaisajan
+     * @return 
+     */
+    
     public double getTime() {
         double elapsed;
         if (counting) {

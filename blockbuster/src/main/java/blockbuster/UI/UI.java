@@ -32,6 +32,15 @@ public class UI extends JPanel implements KeyListener {
 
     }
 
+    /**
+     * Hoitaa piirtämisen esineiden luokkien metodien avulla.
+     * Tekstit ovat drawStringeillä jotka saavat logicilta tiedot
+     * 
+     * Jos peli on voitettu ja nopein aika on tehty, ruutuun ilmestyy myös 
+     * entinen "highScore" ja onnittelu teksti
+     * @param g 
+     */
+    
     @Override
     public void paint(Graphics g) {
         super.paint(g);

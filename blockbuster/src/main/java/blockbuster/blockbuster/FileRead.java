@@ -18,6 +18,15 @@ public class FileRead {
         this.fastestTime = new File("fastestTime.txt");
     }
 
+    
+    /**
+     * Lukee Scannerilla tiedostosta doublen (nopeimman ajan)
+     * Jos tiedostoa ei löydy palauttaa Integer.MAX_VALUEn 
+     * @return haettu aika
+     * @throws FileNotFoundException
+     * @throws IOException 
+     */
+    
     public double getFastestTime() throws FileNotFoundException, IOException {
 
         try{
@@ -34,6 +43,12 @@ public class FileRead {
         
     }
 
+    /**
+     * Kirjoittaa tiedoston yli uudestaan uuden ajan
+     * @param time
+     * @throws IOException 
+     */
+    
     public void setFastestTime(double time) throws IOException {
 
         FileWriter writer = new FileWriter(fastestTime);
@@ -42,6 +57,11 @@ public class FileRead {
         writer.close();
 
     }
+    
+    /**
+     * Kirjoittaa tiedoston yli maxvaluen
+     * @throws IOException 
+     */
     
     public void resetFastestTime() throws IOException{
         FileWriter writer = new FileWriter(fastestTime);

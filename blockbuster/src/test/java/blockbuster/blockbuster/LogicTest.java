@@ -31,7 +31,7 @@ public class LogicTest {
     
 
     @Before
-    public void setUp() throws InterruptedException, FileNotFoundException {
+    public void setUp() throws InterruptedException, FileNotFoundException, IOException {
         logic = new Logic();
         frame = new JFrame("TESTINGI OUT");
         frame.setSize(400, 600);

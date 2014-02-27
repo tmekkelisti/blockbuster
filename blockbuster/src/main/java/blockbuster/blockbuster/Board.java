@@ -42,9 +42,18 @@ public class Board {
         return true;
     }
 
+    /**
+     * siirtää lautaa boardSpeed:n määrittelemän pikselimäärän 
+     * neg. suuntaan eli vasemmalle
+     */
+    
     public void moveLeft(){
         setDx(-boardSpeed);
     }
+    
+    /**
+     * siirtää lautaa boardSpeed:n määrittelemän pikselimäärän oikealle
+     */
     
     public void moveRight(){
         setDx(boardSpeed);
