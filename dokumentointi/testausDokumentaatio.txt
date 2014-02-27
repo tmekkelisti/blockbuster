@@ -1,0 +1,14 @@
+Testausdokumentaatio
+
+Käsin testaamalla testattu:
+	- kimpoilu tiilistä
+	- ajan laskeminen
+	- ajan tallentaminen ja tiedoston lukeminen
+
+Pallon kimpoilu oli hankala toteuttaa "oikein" niin, että olisi varmasti tiennyt mihin kohtaan/puolelle pallo osuu. Kimpoilun jätin nyt villiksi, koska oli muutenkin hauskempi pelata jokseenkin ennustamatonta peliä. 
+
+Muutenkin kun törmäyksen havaitsemiseen käytin Rectanglen intersects metodia, oli vaikea tietää osuuko pallon pyöreä muoto mihinkään. Pallon hitboxi siis oli myös vain neliön muotoinen Rectangle ja varsinkin kulmaosumissa oli mahdoton (itselleni) tietää osuuko pyöreä pallo oikeasti mihinkään.
+
+Ajan laskemisen ja sekkarin toimimisen testasin vain kokeilemalla. En voi sanoa tarkkaan onko sekkari millisekunnin -tarkkaa ja luotan sen olevan ainakin tarpeeksi tarkka.
+
+Ajan tallentamisen testailin pelailemalla ja resetoimalla aikoja. Lukeminen toimii kunhan fastestTime.txt -tiedosto on olemassa.

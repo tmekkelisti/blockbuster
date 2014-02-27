@@ -5,7 +5,7 @@ Tehtävä: Kimmota palloa alareunassa olevalla laudalla, niin että yläreunassa ole
 Elämiä on rajoitettu määrä ja jos pallo sujahtaa laudan ohi alareunaan, menettää pelaaja yhden elämän.
 
 NÄPPÄIN			TOIMINTO
-välilyönti		ampuu pallon irti laudasta
+välilyönti		ampuu pallon irti laudasta / pause, mutta ei pysäytä pelikelloa
 enter			käynnistää pelin uudelleen
 vasen-nuoli		liikuttaa lautaa vasemmalle
 oikea-nuoli		liikuttaa lautaa oikealle
