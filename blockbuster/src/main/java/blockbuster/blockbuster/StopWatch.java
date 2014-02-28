@@ -1,5 +1,9 @@
 package blockbuster.blockbuster;
 
+/**
+ * Toimii sekkarina
+ */
+
 public class StopWatch {
 
     private long start;

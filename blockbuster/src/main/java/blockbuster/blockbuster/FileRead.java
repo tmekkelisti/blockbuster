@@ -9,6 +9,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
+/**
+ * Kirjoittaa ja lukee tiedoston
+ */
+
 public class FileRead {
 
     File fastestTime;

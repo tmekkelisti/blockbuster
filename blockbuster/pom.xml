@@ -56,7 +56,7 @@
                     <configuration>
                         <transformers>
                             <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                <mainClass>blockbuster.Main</mainClass>
+                                <mainClass>blockbuster.blockbuster.Blockbuster</mainClass>
                             </transformer>
                         </transformers>
                     </configuration>

@@ -11,4 +11,4 @@ Muutenkin kun törmäyksen havaitsemiseen käytin Rectanglen intersects metodia, ol
 
 Ajan laskemisen ja sekkarin toimimisen testasin vain kokeilemalla. En voi sanoa tarkkaan onko sekkari millisekunnin -tarkkaa ja luotan sen olevan ainakin tarpeeksi tarkka.
 
-Ajan tallentamisen testailin pelailemalla ja resetoimalla aikoja. Lukeminen toimii kunhan fastestTime.txt -tiedosto on olemassa.
+Ajan tallentamisen testailin pelailemalla ja resetoimalla aikoja. Lukemisen epÃ¤onnistuminen (jos tiedostoa ei ole) ei kaada ohjelmaa vaan kirjoitusvaiheessa luodaan kokonaan uusi tiedosto.
